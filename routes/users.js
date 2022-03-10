@@ -1,7 +1,18 @@
 const router = require("express").Router();
 const { User, Comment, Post } = require("../models/");
 
-// Login route
+// Get all users api/user/
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.findAll({});
+    const userList = await users.map((user) => user.get({ plain: true }));
+    res.send(userList);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Login route api/user/login
 router.post("/login", async (req, res) => {
   console.log(req.body);
   try {
@@ -65,3 +76,5 @@ router.post("/logout", async (req, res) => {
     res.status(404).end();
   }
 });
+
+module.exports = router;

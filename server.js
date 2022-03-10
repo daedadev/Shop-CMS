@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const routes = require("./routes/index");
 const sequelize = require("./config/connection");
+const session = require("express-session");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 3001;
@@ -20,22 +21,21 @@ const sess = {
 };
 
 app.use(session(sess));
-
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
 
 app.use("/api", routes);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./index.html"));
+// });
 
-app.use(express.static(path.join(__dirname, "../public")));
+// app.use(express.static(path.join(__dirname, "../public")));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));

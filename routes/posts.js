@@ -1,7 +1,18 @@
 const router = require("express").Router();
 const { User, Comment, Post } = require("../models/");
 
-// Create new post /post/create
+// Create new post api/post/create
+router.get("/", async (req, res) => {
+  try {
+    const posts = await Post.findAll({});
+    const postList = await posts.map((post) => post.get({ plain: true }));
+    res.send(postList);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Create new post api/post/create
 router.post("/create", async (req, res) => {
   console.log(req.body);
   const thePost = req.body;
@@ -17,7 +28,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-// Dashboard Update route
+// Update post route /api/post/put
 router.put("/put", async (req, res) => {
   console.log(req.body);
   const thePost = req.body;
@@ -52,3 +63,5 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;

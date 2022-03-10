@@ -1,6 +1,19 @@
 const router = require("express").Router();
 const { User, Comment, Post } = require("../models/");
 
+// Find all comments api/comment/
+router.get("/", async (req, res) => {
+  try {
+    const comments = await Comment.findAll({});
+    const commentList = await comments.map((comment) =>
+      comment.get({ plain: true })
+    );
+    res.send(commentList);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 // Create Comment /api/comment/create
 router.post("/create", async (req, res) => {
   console.log(req.body);
@@ -52,3 +65,5 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;
