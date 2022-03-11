@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"nodemon 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/daedadev/Headless-Personal-Blog#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "concurrently": "^7.0.0",
     "connect-session-sequelize": "^7.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
