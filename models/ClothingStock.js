@@ -31,13 +31,29 @@ ClothingStock.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    color_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "color",
+        key: "id",
+      },
+    },
+    item_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "clothing_item",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "clothingstock",
+    modelName: "clothing_stock",
   }
 );
 

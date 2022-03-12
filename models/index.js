@@ -1,35 +1,32 @@
-const User = require("./User");
-const Comment = require("./Comment");
-const Post = require("./Post");
+const ClothingItem = require("./ClothingItem");
+const ClothingStock = require("./ClothingStock");
+const Color = require("./Color");
 
-Post.belongsTo(User, {
-  foreignKey: "user_id",
+ClothingItem.hasMany(Color, {
+  foreignKey: "clothing_item_id",
   onDelete: "CASCADE",
 });
 
-User.hasMany(Post, {
-  foreignKey: "user_id",
+ClothingItem.hasMany(ClothingStock, {
+  foreignKey: "item_id",
   onDelete: "CASCADE",
 });
 
-Comment.belongsTo(User, {
-  foreignKey: "user_id",
+Color.belongsTo(ClothingItem, {
+  foreignKey: "clothing_item_id",
+});
+
+Color.hasOne(ClothingStock, {
+  foreignKey: "color_id",
   onDelete: "CASCADE",
 });
 
-User.hasMany(Comment, {
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
+ClothingStock.belongsTo(Color, {
+  foreignKey: "color_id",
 });
 
-Comment.belongsTo(Post, {
-  foreignKey: "post_id",
-  onDelete: "CASCADE",
+ClothingStock.belongsTo(ClothingItem, {
+  foreignKey: "item_id",
 });
 
-Post.hasMany(Comment, {
-  foreignKey: "post_id",
-  onDelete: "CASCADE",
-});
-
-module.exports = { User, Comment, Post };
+module.exports = { ClothingItem, ClothingStock, Color };

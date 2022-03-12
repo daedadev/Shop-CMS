@@ -21,12 +21,8 @@ ClothingItem.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-    },
-    stock_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -46,7 +42,7 @@ ClothingItem.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "clothingitem",
+    modelName: "clothing_item",
   }
 );
 
