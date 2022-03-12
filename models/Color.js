@@ -15,11 +15,11 @@ Color.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    clothing_stock_id: {
-      type: DataTypes.STRING,
+    clothing_item_id: {
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: "clothing_stock",
+        model: "clothing_item",
         key: "id",
       },
     },

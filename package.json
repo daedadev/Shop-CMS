@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"nodemon 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "start": "nodemon server.js"
+    "start": "nodemon seed.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
