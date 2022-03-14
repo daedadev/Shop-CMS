@@ -19,6 +19,6 @@ export default function MainPage() {
   }, []);
 
   return (
-    <section className="flex  w-full h-full items-center justify-center bg-slate-800 rounded-tr-xl rounded-br-xl"></section>
+    <section className="flex  w-full h-full items-center justify-center bg-slate-100 rounded-tr-xl rounded-br-xl"></section>
   );
 }
