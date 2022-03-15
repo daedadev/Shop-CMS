@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daedadev/Headless-Personal-Blog.git"
+    "url": "git+https://github.com/daedadev/Shop-CMS.git"
   },
   "author": "Daniel Moore",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/daedadev/Headless-Personal-Blog/issues"
+    "url": "https://github.com/daedadev/Shop-CMS/issues"
   },
-  "homepage": "https://github.com/daedadev/Headless-Personal-Blog#readme",
+  "homepage": "https://github.com/daedadev/Shop-CMS#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
