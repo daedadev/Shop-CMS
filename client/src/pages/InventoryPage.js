@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
+import EditModal from "../components/EditModal";
 import InventoryItem from "../components/InventoryItem";
 import InventoryLoading from "../components/loadingComponents/InventoryLoading";
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalItem, setModalItem] = useState();
+  const [modalToggle, setModalToggle] = useState(false);
+
+  function modalHandler(item) {
+    setModalToggle(true);
+    setModalItem(item);
+  }
 
   async function getInventory() {
     setLoading(true);
@@ -42,13 +50,18 @@ export default function InventoryPage() {
   }
   return (
     <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
-      <div className="w-[95%] h-[95%]">
-        <div>
-          <h1 className="text-5xl text-slate-800">Inventory</h1>
-        </div>
+      <div className="flex flex-col w-[95%] h-[95%] items-center">
+        <h1 className="flex text-5xl text-slate-800 text-left w-full">
+          Inventory
+        </h1>
+        <EditModal
+          toggle={modalToggle}
+          item={modalItem}
+          setToggle={setModalToggle}
+        />
         <section className="w-full mt-10">
           {inventory.map((item) => {
-            return <InventoryItem item={item} />;
+            return <InventoryItem item={item} setModal={modalHandler} />;
           })}
         </section>
       </div>
