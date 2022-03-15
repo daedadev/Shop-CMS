@@ -2,15 +2,22 @@ const router = require("express").Router();
 const { ClothingItem, ClothingStock, Color } = require("../models");
 
 const exampleBody = {
-  name: "Should be final clothing",
-  price: 2400,
-  description: "This is a test item",
-  color: "Vermillion",
-  xs: 2,
-  s: 40,
-  m: 22,
-  l: 13,
-  xl: 12,
+  clothing_id: 1,
+  name: "Test Item",
+  price: 200,
+  description: "This is an update test item",
+  color: [
+    { color: "purple", id: 1 },
+    { color: "orange", id: 2 },
+    { color: "black", id: 3 },
+  ],
+  clothing_stock: [
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 1 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 2 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 3 },
+  ],
+  added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }],
+  deleted_color: [{ color_id: 1, stock_id: 2 }],
 };
 
 // Find all comments api/clothing/
@@ -65,23 +72,107 @@ router.post("/create", async (req, res) => {
   }
 });
 
-// Update Comment /api/clothing/put
-router.put("/put", async (req, res) => {
+// Update Comment /api/clothing/
+router.put("/", async (req, res) => {
   console.log(req.body);
+  // Handling updating -------------
   const clothUpdate = req.body;
   try {
-    Comment.update(
+    await ClothingItem.update(
       {
-        title: theComment.title,
-        content: theComment.content,
+        name: clothUpdate.name,
+        price: clothUpdate.price,
+        description: clothUpdate.description,
       },
       {
         where: {
-          id: theComment.post_id,
+          id: clothUpdate.clothing_id,
         },
       }
     );
-    res.send(theComment);
+
+    await clothUpdate.color.forEach((element) => {
+      console.log(element);
+      Color.update(
+        {
+          color: element.color,
+        },
+        {
+          where: {
+            id: element.id,
+          },
+        }
+      ).catch((err) => {
+        console.log(err);
+      });
+    });
+
+    await clothUpdate.clothing_stock.forEach((element) => {
+      console.log(element);
+      ClothingStock.update(
+        {
+          xs: element.xs,
+          s: element.s,
+          m: element.m,
+          l: element.l,
+          xl: element.xl,
+        },
+        {
+          where: {
+            id: element.id,
+          },
+        }
+      ).catch((err) => {
+        console.log(err);
+      });
+    });
+
+    // Handling adding -------------
+    if (
+      clothUpdate.added_color !== undefined ||
+      clothUpdate.added_color.length != 0
+    ) {
+      console.log("adding color");
+      await clothUpdate.added_color.forEach((element) => {
+        console.log(element);
+        Color.create({
+          color: element.color,
+          clothing_item_id: clothUpdate.clothing_id,
+        }).then((newColor) => {
+          ClothingStock.create({
+            xs: element.xs,
+            s: element.s,
+            m: element.m,
+            l: element.l,
+            xl: element.xl,
+            color_id: newColor.id,
+            item_id: clothUpdate.clothing_id,
+          });
+        });
+      });
+    }
+
+    // Handling deleting -------------
+    if (
+      clothUpdate.deleted_color !== undefined ||
+      clothUpdate.deleted_color.length != 0
+    ) {
+      console.log("deleting Color");
+      await clothUpdate.deleted_color.forEach((element) => {
+        console.log(element);
+        Color.destroy({
+          where: {
+            id: element.color_id,
+          },
+        });
+        ClothingStock.destroy({
+          where: {
+            item_id: element.stock_id,
+          },
+        });
+      });
+    }
+    res.sendStatus(200);
   } catch (err) {
     res.status(400).json(err);
   }

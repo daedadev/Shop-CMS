@@ -36,7 +36,7 @@ export default function InventoryPage() {
 
   if (loading) {
     return (
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl overflow-auto">
+      <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl rounded-lg overflow-auto">
         <div className="w-[95%] h-[95%]">
           <div>
             <h1 className="text-5xl text-slate-800">Inventory</h1>
@@ -49,7 +49,7 @@ export default function InventoryPage() {
     );
   }
   return (
-    <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
+    <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl rounded-lg overflow-auto">
       <div className="flex flex-col w-[95%] h-[95%] items-center">
         <h1 className="flex text-5xl text-slate-800 text-left w-full">
           Inventory
