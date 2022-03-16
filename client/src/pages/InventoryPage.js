@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import EditModal from "../components/EditModal";
-import InventoryItem from "../components/InventoryItem";
+import EditModal from "../components/EditModal/EditModal";
+import InventoryItem from "../components/InventoryItem/InventoryItem";
 import InventoryLoading from "../components/loadingComponents/InventoryLoading";
 
 export default function InventoryPage() {
@@ -61,7 +61,13 @@ export default function InventoryPage() {
         />
         <section className="w-full mt-10">
           {inventory.map((item) => {
-            return <InventoryItem item={item} setModal={modalHandler} />;
+            return (
+              <InventoryItem
+                key={item.id}
+                item={item}
+                setModal={modalHandler}
+              />
+            );
           })}
         </section>
       </div>

@@ -105,10 +105,7 @@ router.put("/", async (req, res) => {
       ).catch((err) => {
         console.log(err);
       });
-    });
 
-    await clothUpdate.clothing_stock.forEach((element) => {
-      console.log(element);
       ClothingStock.update(
         {
           xs: element.xs,
@@ -119,7 +116,7 @@ router.put("/", async (req, res) => {
         },
         {
           where: {
-            id: element.id,
+            id: element.stock_id,
           },
         }
       ).catch((err) => {

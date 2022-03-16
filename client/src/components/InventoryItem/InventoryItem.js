@@ -18,7 +18,10 @@ export default function InventoryItem({ item, setModal }) {
       <div className="flex flex-col ">
         {item.colors.map((color) => {
           return (
-            <div className="relative flex-col group bg-blue-500 mt-1 rounded-lg">
+            <div
+              key={color.id}
+              className="relative flex-col group bg-blue-500 mt-1 rounded-lg"
+            >
               <label htmlFor={item.name + color.color}>
                 <h1 className="text-lg bg-blue-500 text-white w-[full] pl-5 pr-5  p-1 hover:bg-blue-600 hover:cursor-pointer checked:bg-slate-50 transition-all rounded-lg">
                   {color.color}
