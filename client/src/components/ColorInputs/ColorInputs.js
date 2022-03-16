@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function ColorInputs({ variant, submitting, updateVariants }) {
+export default function ColorInputs({ variant, submitting, variantUpdate }) {
   const variantRef = useRef();
   const xsRef = useRef();
   const sRef = useRef();
@@ -17,9 +17,9 @@ export default function ColorInputs({ variant, submitting, updateVariants }) {
       m: mRef.current.value,
       l: lRef.current.value,
       xl: xlRef.current.value,
+      stock_id: variant.clothing_stock.id,
     };
-
-    updateVariants(color);
+    variantUpdate(color, variant.id);
   }
 
   return (

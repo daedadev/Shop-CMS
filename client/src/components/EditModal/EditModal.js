@@ -6,16 +6,9 @@ export default function EditModal({ setToggle, toggle, item }) {
   const [variants, setVariants] = useState([]);
 
   // Takes updated variants and adds them to variants one by one
-  async function updateVariants(updatedVariant) {
-    setSubmitting(false);
-    try {
-      const newArray = variants.push(updatedVariant);
-      setVariants(newArray);
-    } catch (err) {
-      console.error(err);
-    }
-
-    console.log(variants);
+  async function variantUpdate(col) {
+    let newArray = variants;
+    setSubmitting(newArray.push(col));
   }
 
   if (toggle && item.colors) {
@@ -50,7 +43,7 @@ export default function EditModal({ setToggle, toggle, item }) {
                   key={color.id}
                   variant={color}
                   submitting={submitting}
-                  updateVariants={updateVariants}
+                  variantUpdate={variantUpdate}
                 />
               );
             })}
