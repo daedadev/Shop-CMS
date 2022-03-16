@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function ColorInputs({ variant, submitting, variantUpdate }) {
+export default function ColorInputs({ variant, index, variantUpdate }) {
   const variantRef = useRef();
   const xsRef = useRef();
   const sRef = useRef();
@@ -8,7 +8,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
   const lRef = useRef();
   const xlRef = useRef();
 
-  if (submitting) {
+  function inputChanging() {
     const color = {
       color: variantRef.current.value,
       id: variant.id,
@@ -19,14 +19,18 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
       xl: xlRef.current.value,
       stock_id: variant.clothing_stock.id,
     };
-    variantUpdate(color, variant.id);
+    variantUpdate(color, index);
   }
 
   return (
     <article className="flex flex-row mt-5">
       <div className="flex flex-col">
         <label>Variant</label>
-        <input ref={variantRef} defaultValue={variant.color}></input>
+        <input
+          onChange={inputChanging}
+          ref={variantRef}
+          defaultValue={variant.color}
+        ></input>
       </div>
 
       <div className="flex flex-col w-full items-center">
@@ -35,6 +39,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
           <div className="flex flex-row w-full justify-between mt-2">
             <label>xs</label>
             <input
+              onChange={inputChanging}
               ref={xsRef}
               className="flex w-12 text-center"
               defaultValue={variant.clothing_stock.xs}
@@ -43,6 +48,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
           <div className="flex flex-row w-full justify-between mt-2">
             <label>s</label>
             <input
+              onChange={inputChanging}
               ref={sRef}
               className="flex w-12 text-center"
               defaultValue={variant.clothing_stock.s}
@@ -51,6 +57,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
           <div className="flex flex-row w-full justify-between mt-2">
             <label>m</label>
             <input
+              onChange={inputChanging}
               ref={mRef}
               className="flex w-12 text-center"
               defaultValue={variant.clothing_stock.m}
@@ -59,6 +66,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
           <div className="flex flex-row w-full justify-between mt-2">
             <label>l</label>
             <input
+              onChange={inputChanging}
               ref={lRef}
               className="flex w-12 text-center"
               defaultValue={variant.clothing_stock.l}
@@ -67,6 +75,7 @@ export default function ColorInputs({ variant, submitting, variantUpdate }) {
           <div className="flex flex-row w-full justify-between mt-2">
             <label>xl</label>
             <input
+              onChange={inputChanging}
               ref={xlRef}
               className="flex w-12 text-center"
               defaultValue={variant.clothing_stock.xl}

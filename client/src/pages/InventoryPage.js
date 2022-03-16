@@ -63,7 +63,7 @@ export default function InventoryPage() {
           {inventory.map((item) => {
             return (
               <InventoryItem
-                key={item.id}
+                key={item.name + item.id}
                 item={item}
                 setModal={modalHandler}
               />
