@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 
-export default function ColorInputs({ variant, index, variantUpdate }) {
+export default function CurrentVariant({
+  variant,
+  index,
+  variantUpdate,
+  removeVariant,
+}) {
   const variantRef = useRef();
   const xsRef = useRef();
   const sRef = useRef();
   const mRef = useRef();
   const lRef = useRef();
   const xlRef = useRef();
+
+  const [modal, setModal] = useState(false);
 
   function inputChanging() {
     const color = {
@@ -22,15 +29,36 @@ export default function ColorInputs({ variant, index, variantUpdate }) {
     variantUpdate(color, index);
   }
 
+  function deleteVariant() {
+    const deleted_variant = {
+      color_id: variant.id,
+      stock_id: variant.clothing_stock.id,
+    };
+    removeVariant(deleted_variant, index);
+  }
+
   return (
-    <article className="flex flex-row mt-5">
-      <div className="flex flex-col">
-        <label>Variant</label>
+    <article className="flex flex-col md:flex-row mt-5">
+      {/* <div className="flex absolute bg-slate-500 w- h-full"></div> */}
+      <div className="flex flex-col w-full">
+        <div>
+          <label>Variant</label>
+        </div>
         <input
           onChange={inputChanging}
           ref={variantRef}
           defaultValue={variant.color}
+          className="w-full"
         ></input>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            deleteVariant();
+          }}
+          className="group flex bg-red-700 text-white w-fit pl-3 pr-3 rounded-lg hover:bg-red-600 mt-2"
+        >
+          -
+        </button>
       </div>
 
       <div className="flex flex-col w-full items-center">

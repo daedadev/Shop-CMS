@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import ColorInputs from "../VariantComponents/ColorInputs";
+import CurrentVariant from "../VariantComponents/CurrentVariant";
 import AddVariant from "../VariantComponents/AddVariant";
 
 export default function EditModal({ setToggle, toggle, item }) {
   const [variants, setVariants] = useState([]);
   const [addedVariants, setAddedVariants] = useState([]);
-  // const [deletedVariants, setDeletedVariants] = useState([]);
+  const [deletedVariants, setDeletedVariants] = useState([]);
 
   const nameRef = useRef();
   const priceRef = useRef();
@@ -31,7 +31,6 @@ export default function EditModal({ setToggle, toggle, item }) {
         clothing_id: item.id,
       };
       setAddedVariants((prev) => [...prev, newVariant]);
-      console.log(addedVariants);
     } catch (err) {
       console.error(err);
     }
@@ -41,7 +40,33 @@ export default function EditModal({ setToggle, toggle, item }) {
     let newArray = addedVariants;
     newArray[colIndex] = col;
     setAddedVariants(newArray);
-    console.log(addedVariants);
+  }
+
+  async function deletingCurrentVariant(col, index) {
+    try {
+      item.colors.splice(index, 1);
+
+      setDeletedVariants((prev) => [...prev, col]);
+    } catch (err) {
+      console.error(err);
+    }
+    console.log(variants);
+  }
+
+  async function deletingAddedVariant(index) {
+    try {
+      let newArray = addedVariants;
+      console.log(newArray);
+      if (newArray.length > 1) {
+        setAddedVariants(newArray.splice(index, 1));
+        return;
+      } else if (newArray.length === 1) {
+        setAddedVariants([]);
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function createPayload() {
@@ -52,7 +77,7 @@ export default function EditModal({ setToggle, toggle, item }) {
       description: descRef.current.value,
       color: variants,
       added_color: addedVariants,
-      deleted_color: [],
+      deleted_color: deletedVariants,
     };
     console.log(payload);
   }
@@ -97,11 +122,12 @@ export default function EditModal({ setToggle, toggle, item }) {
           </article>
           {item.colors.map((color, index) => {
             return (
-              <ColorInputs
+              <CurrentVariant
                 key={color.color + color.id}
                 index={index}
                 variant={color}
                 variantUpdate={variantUpdate}
+                removeVariant={deletingCurrentVariant}
               />
             );
           })}
@@ -114,21 +140,25 @@ export default function EditModal({ setToggle, toggle, item }) {
                   index={index}
                   variant={color}
                   variantUpdate={addVariantUpdate}
+                  removeVariant={deletingAddedVariant}
                 />
               );
             })}
-            <button
-              className="flex bg-blue-500 text-white w-fit pl-5 pr-5 rounded-lg hover:bg-blue-600"
-              onClick={(e) => {
-                e.preventDefault();
-                addVariant();
-              }}
-            >
-              New Variant
-            </button>
           </div>
         </section>
-        <section className="absolute bottom-0 right-10 w-fit justify-end mb-7">
+        <section className="flex justify-between sticky -bottom-1 pb-3 pt-3 w-full mb-7 bg-slate-100">
+          <button
+            className="group flex bg-blue-500 text-white w-fit pl-3 pr-3 rounded-lg hover:bg-blue-600"
+            onClick={(e) => {
+              e.preventDefault();
+              addVariant();
+            }}
+          >
+            +
+            <span className="absolute scale-0 group-hover:scale-100 ml-7 text-blue-800 bg-blue-300 border border-blue-600 rounded-md pl-3 pr-3 transition-all">
+              Add Variant
+            </span>
+          </button>
           <button
             className="flex bg-blue-500 text-white w-fit pl-5 pr-5 rounded-lg hover:bg-blue-600"
             onClick={(e) => {

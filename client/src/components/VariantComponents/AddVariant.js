@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
 
-export default function AddVariant({ variant, index, variantUpdate }) {
+export default function AddVariant({
+  variant,
+  index,
+  variantUpdate,
+  removeVariant,
+}) {
   const variantRef = useRef();
   const xsRef = useRef();
   const sRef = useRef();
@@ -21,15 +26,29 @@ export default function AddVariant({ variant, index, variantUpdate }) {
     variantUpdate(color, index);
   }
 
+  function deleteVariant() {
+    removeVariant(index);
+  }
+
   return (
     <article className="flex flex-row mt-5">
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <label>Variant</label>
         <input
           onChange={inputChanging}
           ref={variantRef}
           defaultValue={variant.color}
+          className="w-full"
         ></input>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            deleteVariant();
+          }}
+          className="group flex bg-red-700 text-white w-fit pl-3 pr-3 rounded-lg hover:bg-red-600 mt-2"
+        >
+          -
+        </button>
       </div>
 
       <div className="flex flex-col w-full items-center">
