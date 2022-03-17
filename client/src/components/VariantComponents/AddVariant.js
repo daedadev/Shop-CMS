@@ -38,7 +38,7 @@ export default function AddVariant({
           onChange={inputChanging}
           ref={variantRef}
           defaultValue={variant.color}
-          className="w-full"
+          className="w-full border-2 border-slate-300 rounded-lg"
         ></input>
         <button
           onClick={(e) => {
@@ -59,7 +59,7 @@ export default function AddVariant({
             <input
               onChange={inputChanging}
               ref={xsRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.xs}
             ></input>
           </div>
@@ -68,7 +68,7 @@ export default function AddVariant({
             <input
               onChange={inputChanging}
               ref={sRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.s}
             ></input>
           </div>
@@ -77,7 +77,7 @@ export default function AddVariant({
             <input
               onChange={inputChanging}
               ref={mRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.m}
             ></input>
           </div>
@@ -86,7 +86,7 @@ export default function AddVariant({
             <input
               onChange={inputChanging}
               ref={lRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.l}
             ></input>
           </div>
@@ -95,7 +95,7 @@ export default function AddVariant({
             <input
               onChange={inputChanging}
               ref={xlRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.xl}
             ></input>
           </div>

@@ -39,16 +39,13 @@ export default function CurrentVariant({
 
   return (
     <article className="flex flex-col md:flex-row mt-5">
-      {/* <div className="flex absolute bg-slate-500 w- h-full"></div> */}
       <div className="flex flex-col w-full">
-        <div>
-          <label>Variant</label>
-        </div>
+        <label>Variant</label>
         <input
           onChange={inputChanging}
           ref={variantRef}
           defaultValue={variant.color}
-          className="w-full"
+          className="w-full border-2 border-slate-300 rounded-lg pl-2"
         ></input>
         <button
           onClick={(e) => {
@@ -69,7 +66,7 @@ export default function CurrentVariant({
             <input
               onChange={inputChanging}
               ref={xsRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.clothing_stock.xs}
             ></input>
           </div>
@@ -78,7 +75,7 @@ export default function CurrentVariant({
             <input
               onChange={inputChanging}
               ref={sRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.clothing_stock.s}
             ></input>
           </div>
@@ -87,7 +84,7 @@ export default function CurrentVariant({
             <input
               onChange={inputChanging}
               ref={mRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.clothing_stock.m}
             ></input>
           </div>
@@ -96,7 +93,7 @@ export default function CurrentVariant({
             <input
               onChange={inputChanging}
               ref={lRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.clothing_stock.l}
             ></input>
           </div>
@@ -105,7 +102,7 @@ export default function CurrentVariant({
             <input
               onChange={inputChanging}
               ref={xlRef}
-              className="flex w-12 text-center"
+              className="flex w-12 text-center border-2 border-slate-300 rounded-lg"
               defaultValue={variant.clothing_stock.xl}
             ></input>
           </div>

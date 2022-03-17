@@ -28,22 +28,24 @@ export default function EditModal({ setToggle, toggle, item }) {
     }
   }
 
-  async function variantUpdate(col, colIndex) {
-    setVariants((arr) => arr.splice(colIndex, 1, col));
+  function variantUpdate(variant, index) {
+    setVariants((arr) => arr.splice(index, 1, variant));
   }
 
-  function addVariantUpdate(col, colIndex) {
-    setAddedVariants((arr) => arr.splice(colIndex, 1, col));
+  function addVariantUpdate(variant, index) {
+    let newArray = addedVariants;
+    newArray[index] = variant;
+    setAddedVariants(newArray);
   }
 
-  async function deletingCurrentVariant(col, index) {
+  function deletingCurrentVariant(variant, index) {
     item.colors.splice(index, 1);
-    setDeletedVariants((prev) => [...prev, col]);
+    setDeletedVariants((prev) => [...prev, variant]);
   }
 
-  async function deletingAddedVariant(index) {
+  function deletingAddedVariant(index) {
     setAddedVariants((arr) =>
-      arr.filter((item) => arr.indexOf(item) !== index)
+      arr.filter((variant) => arr.indexOf(variant) !== index)
     );
   }
 
@@ -65,18 +67,18 @@ export default function EditModal({ setToggle, toggle, item }) {
   }
 
   return (
-    <section className="flex absolute bg-slate-100 h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-5 rounded-lg shadow-md">
+    <section className="flex absolute bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
       <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto">
         <section className="flex flex-col w-full mb-20">
           <h1 className="w-full text-black text-3xl text-center mt-10 font-semibold">
             {item.name}
           </h1>
-          <section className="flex flex-col md:flex-row">
-            <article className="flex flex-col">
+          <section className="flex flex-col md:flex-row justify-evenly">
+            <article className="flex flex-col w-full mr-2">
               <label>Name</label>
               <input
                 ref={nameRef}
-                className="w-full"
+                className="w-full border-2 border-slate-300 rounded-lg pl-2"
                 defaultValue={item.name}
                 type="text"
               ></input>
@@ -87,6 +89,7 @@ export default function EditModal({ setToggle, toggle, item }) {
                 ref={priceRef}
                 defaultValue={item.price}
                 type="text"
+                className="border-2 border-slate-300 rounded-lg pl-2"
               ></input>
             </article>
           </section>
@@ -96,6 +99,7 @@ export default function EditModal({ setToggle, toggle, item }) {
               ref={descRef}
               defaultValue={item.description}
               type="text"
+              className="border-2 border-slate-300 rounded-lg pl-2"
             ></textarea>
           </article>
           {item.colors.map((color, index) => {
