@@ -11,14 +11,6 @@ export default function EditModal({ setToggle, toggle, item }) {
   const priceRef = useRef();
   const descRef = useRef();
 
-  // Takes updated variants and adds them to variants one by one
-  async function variantUpdate(col, colIndex) {
-    let newArray = variants;
-    newArray[colIndex] = col;
-    setVariants(newArray);
-    console.log(variants);
-  }
-
   function addVariant() {
     try {
       const newVariant = {
@@ -36,37 +28,23 @@ export default function EditModal({ setToggle, toggle, item }) {
     }
   }
 
+  async function variantUpdate(col, colIndex) {
+    setVariants((arr) => arr.splice(colIndex, 1, col));
+  }
+
   function addVariantUpdate(col, colIndex) {
-    let newArray = addedVariants;
-    newArray[colIndex] = col;
-    setAddedVariants(newArray);
+    setAddedVariants((arr) => arr.splice(colIndex, 1, col));
   }
 
   async function deletingCurrentVariant(col, index) {
-    try {
-      item.colors.splice(index, 1);
-
-      setDeletedVariants((prev) => [...prev, col]);
-    } catch (err) {
-      console.error(err);
-    }
-    console.log(variants);
+    item.colors.splice(index, 1);
+    setDeletedVariants((prev) => [...prev, col]);
   }
 
   async function deletingAddedVariant(index) {
-    try {
-      let newArray = addedVariants;
-      console.log(newArray);
-      if (newArray.length > 1) {
-        setAddedVariants(newArray.splice(index, 1));
-        return;
-      } else if (newArray.length === 1) {
-        setAddedVariants([]);
-        return;
-      }
-    } catch (err) {
-      console.error(err);
-    }
+    setAddedVariants((arr) =>
+      arr.filter((item) => arr.indexOf(item) !== index)
+    );
   }
 
   function createPayload() {
