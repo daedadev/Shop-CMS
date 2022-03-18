@@ -6,6 +6,9 @@ export default function EditModal({ setToggle, toggle, item }) {
   const [variants, setVariants] = useState([]);
   const [addedVariants, setAddedVariants] = useState([]);
   const [deletedVariants, setDeletedVariants] = useState([]);
+  const [variantToDelete, setVariantToDelete] = useState([]);
+
+  const [confirmModal, setConfirmModal] = useState(false);
 
   const nameRef = useRef();
   const priceRef = useRef();
@@ -38,15 +41,26 @@ export default function EditModal({ setToggle, toggle, item }) {
     setAddedVariants(newArray);
   }
 
-  function deletingCurrentVariant(variant, index) {
-    item.colors.splice(index, 1);
-    setDeletedVariants((prev) => [...prev, variant]);
+  function storeVariantToDelete(variant, index, type) {
+    setConfirmModal(true);
+    const toDelete = [variant, index, type];
+    setVariantToDelete(toDelete);
+    console.log(toDelete);
   }
 
-  function deletingAddedVariant(index) {
-    setAddedVariants((arr) =>
-      arr.filter((variant) => arr.indexOf(variant) !== index)
-    );
+  function deleteStoredVariant() {
+    const variant = variantToDelete;
+
+    if (variant[2] === "added") {
+      setAddedVariants((arr) =>
+        arr.filter((items) => arr.indexOf(items) !== variant[1])
+      );
+      setConfirmModal(false);
+    } else if (variant[2] === "current") {
+      item.colors.splice(variant[1], 1);
+      setDeletedVariants((prev) => [...prev, variant[0]]);
+      setConfirmModal(false);
+    }
   }
 
   function createPayload() {
@@ -67,7 +81,39 @@ export default function EditModal({ setToggle, toggle, item }) {
   }
 
   return (
-    <section className="flex absolute bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
+    <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
+      <div
+        className={
+          confirmModal
+            ? "flex flex-col absolute items-center justify-center w-full h-full bg-slate-500 bg-opacity-50 z-20 rounded-lg"
+            : "hidden"
+        }
+      >
+        <div className="flex flex-col absolute items-center justify-between md:w-[60%] w-[90%] md:h-[20%] h-[30%] bg-white border border-slate-300 rounded-lg text-center pt-5">
+          <h1 className="text-black text-3xl font-semibold ">Delete Variant</h1>
+          <p className="text-slate-500">
+            Are You Sure You Would Like To Delete This Variant?
+          </p>
+          <div className="flex flex-row items-center md:justify-end justify-evenly w-full bg-slate-100 rounded-br-lg rounded-bl-lg pt-4 pb-4">
+            <button
+              onClick={() => {
+                setConfirmModal(false);
+                setVariantToDelete("");
+              }}
+              className="flex justify-center font-semibold bg-white border border-gray-400 text-black w-24 pl-5 pr-5 md:mr-5 rounded-lg hover:bg-gray-200"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={deleteStoredVariant}
+              className="flex justify-center font-semibold bg-red-600 border border-red-500 text-white w-24 pl-5 pr-5 md:mr-5 rounded-lg hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
       <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto">
         <section className="flex flex-col w-full mb-20">
           <h1 className="w-full text-black text-3xl text-center mt-10 font-semibold">
@@ -109,7 +155,7 @@ export default function EditModal({ setToggle, toggle, item }) {
                 index={index}
                 variant={color}
                 variantUpdate={variantUpdate}
-                removeVariant={deletingCurrentVariant}
+                removeVariant={storeVariantToDelete}
               />
             );
           })}
@@ -122,13 +168,13 @@ export default function EditModal({ setToggle, toggle, item }) {
                   index={index}
                   variant={color}
                   variantUpdate={addVariantUpdate}
-                  removeVariant={deletingAddedVariant}
+                  removeVariant={storeVariantToDelete}
                 />
               );
             })}
           </div>
         </section>
-        <section className="flex justify-between sticky -bottom-1 pb-3 pt-3 w-full mb-7 bg-slate-100">
+        <section className="flex justify-between sticky -bottom-1 pb-5 pt-5 w-full mb-7 bg-slate-100 border-t-2 border-slate-300">
           <button
             className="group flex bg-blue-500 text-white w-fit pl-3 pr-3 rounded-lg hover:bg-blue-600"
             onClick={(e) => {
@@ -137,7 +183,7 @@ export default function EditModal({ setToggle, toggle, item }) {
             }}
           >
             +
-            <span className="absolute scale-0 group-hover:scale-100 ml-7 text-blue-800 bg-blue-300 border border-blue-600 rounded-md pl-3 pr-3 transition-all">
+            <span className="absolute scale-0 lg:group-hover:scale-100 ml-7 text-blue-800 bg-blue-300 border border-blue-600 rounded-md pl-3 pr-3 transition-all">
               Add Variant
             </span>
           </button>

@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function InventoryItem({ item, setModal }) {
+  const [modalActive, setModalActive] = useState(false);
+
+  function modalOpen() {
+    setModal(item);
+    setModalActive(true);
+  }
+
   return (
     <article className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md">
       <div className="flex flex-row text-black ml-2">
@@ -8,8 +15,9 @@ export default function InventoryItem({ item, setModal }) {
         <h1 className="text-xl w-1/3">${item.price} </h1>
         <h1 className="text-xl w-1/3">Total Stock: 10 </h1>
         <button
-          className="bg-blue-500 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 hover:bg-blue-600"
-          onClick={() => setModal(item)}
+          disabled={modalActive}
+          className="bg-blue-500 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 hover:bg-blue-600 disabled:bg-blue-500 disabled:hover:bg-blue-500"
+          onClick={() => modalOpen()}
         >
           Edit
         </button>
@@ -19,6 +27,7 @@ export default function InventoryItem({ item, setModal }) {
         {item.colors.map((color) => {
           return (
             <div
+              disabled={modalActive}
               key={color.id}
               className="relative flex-col group bg-blue-500 mt-1 rounded-lg"
             >

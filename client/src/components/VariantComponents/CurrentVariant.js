@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
 export default function CurrentVariant({
   variant,
@@ -12,8 +12,6 @@ export default function CurrentVariant({
   const mRef = useRef();
   const lRef = useRef();
   const xlRef = useRef();
-
-  const [modal, setModal] = useState(false);
 
   function inputChanging() {
     const color = {
@@ -34,11 +32,11 @@ export default function CurrentVariant({
       color_id: variant.id,
       stock_id: variant.clothing_stock.id,
     };
-    removeVariant(deleted_variant, index);
+    removeVariant(deleted_variant, index, "current");
   }
 
   return (
-    <article className="flex flex-col md:flex-row mt-5">
+    <article className="flex flex-col md:flex-row mt-5 justify-center">
       <div className="flex flex-col w-full">
         <label>Variant</label>
         <input

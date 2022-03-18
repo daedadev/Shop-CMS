@@ -27,11 +27,11 @@ export default function AddVariant({
   }
 
   function deleteVariant() {
-    removeVariant(index);
+    removeVariant("", index, "added");
   }
 
   return (
-    <article className="flex flex-row mt-5">
+    <article className="flex flex-col md:flex-row mt-5">
       <div className="flex flex-col w-full">
         <label>Variant</label>
         <input
