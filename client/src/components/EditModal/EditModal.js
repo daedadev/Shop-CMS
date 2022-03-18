@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import CurrentVariant from "../VariantComponents/CurrentVariant";
 import AddVariant from "../VariantComponents/AddVariant";
+import ConfirmDeleteModal from "../popupModals/ConfirmDeleteModal";
 
 export default function EditModal({ setToggle, toggle, item }) {
   const [variants, setVariants] = useState([]);
@@ -63,6 +64,11 @@ export default function EditModal({ setToggle, toggle, item }) {
     }
   }
 
+  function onModalCancel() {
+    setConfirmModal(false);
+    setVariantToDelete("");
+  }
+
   function createPayload() {
     const payload = {
       clothing_id: item.id,
@@ -74,6 +80,7 @@ export default function EditModal({ setToggle, toggle, item }) {
       deleted_color: deletedVariants,
     };
     console.log(payload);
+    setToggle(false);
   }
 
   if (!toggle) {
@@ -82,37 +89,13 @@ export default function EditModal({ setToggle, toggle, item }) {
 
   return (
     <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
-      <div
-        className={
-          confirmModal
-            ? "flex flex-col absolute items-center justify-center w-full h-full bg-slate-500 bg-opacity-50 z-20 rounded-lg"
-            : "hidden"
-        }
-      >
-        <div className="flex flex-col absolute items-center justify-between md:w-[60%] w-[90%] md:h-[20%] h-[30%] bg-white border border-slate-300 rounded-lg text-center pt-5">
-          <h1 className="text-black text-3xl font-semibold ">Delete Variant</h1>
-          <p className="text-slate-500">
-            Are You Sure You Would Like To Delete This Variant?
-          </p>
-          <div className="flex flex-row items-center md:justify-end justify-evenly w-full bg-slate-100 rounded-br-lg rounded-bl-lg pt-4 pb-4">
-            <button
-              onClick={() => {
-                setConfirmModal(false);
-                setVariantToDelete("");
-              }}
-              className="flex justify-center font-semibold bg-white border border-gray-400 text-black w-24 pl-5 pr-5 md:mr-5 rounded-lg hover:bg-gray-200"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={deleteStoredVariant}
-              className="flex justify-center font-semibold bg-red-600 border border-red-500 text-white w-24 pl-5 pr-5 md:mr-5 rounded-lg hover:bg-red-700"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
+      <ConfirmDeleteModal
+        modalToggle={confirmModal}
+        onDelete={deleteStoredVariant}
+        onCancel={onModalCancel}
+        title={"Delete Variant"}
+        message={"Are You Sure You Would Like To Delete This Variant?"}
+      />
 
       <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto">
         <section className="flex flex-col w-full mb-20">
