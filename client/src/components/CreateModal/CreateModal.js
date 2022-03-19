@@ -38,10 +38,6 @@ export default function EditModal({ setToggle, toggle, item }) {
     }
   }
 
-  function variantUpdate(variant, index) {
-    setVariants((arr) => arr.splice(index, 1, variant));
-  }
-
   function addVariantUpdate(variant, index) {
     let newArray = addedVariants;
     newArray[index] = variant;
@@ -56,18 +52,10 @@ export default function EditModal({ setToggle, toggle, item }) {
   }
 
   function deleteStoredVariant() {
-    const variant = variantToDelete;
-
-    if (variant[2] === "added") {
-      setAddedVariants((arr) =>
-        arr.filter((items) => arr.indexOf(items) !== variant[1])
-      );
-      setConfirmModal(false);
-    } else if (variant[2] === "current") {
-      item.colors.splice(variant[1], 1);
-      setDeletedVariants((prev) => [...prev, variant[0]]);
-      setConfirmModal(false);
-    }
+    setAddedVariants((arr) =>
+      arr.filter((items) => arr.indexOf(items) !== variant[1])
+    );
+    setConfirmModal(false);
   }
 
   function onModalCancel() {
@@ -77,13 +65,10 @@ export default function EditModal({ setToggle, toggle, item }) {
 
   function createPayload() {
     const payload = {
-      clothing_id: item.id,
       name: nameRef.current.value,
       price: priceRef.current.value,
       description: descRef.current.value,
-      color: variants,
-      added_color: addedVariants,
-      deleted_color: deletedVariants,
+      color: addedVariants,
     };
     console.log(payload);
     setToggle(false);
@@ -145,18 +130,6 @@ export default function EditModal({ setToggle, toggle, item }) {
                 className="border-2 border-slate-300 rounded-lg pl-2"
               ></textarea>
             </article>
-            {item.colors.map((color, index) => {
-              return (
-                <CurrentVariant
-                  key={color.color + color.id}
-                  index={index}
-                  variant={color}
-                  variantUpdate={variantUpdate}
-                  removeVariant={storeVariantToDelete}
-                />
-              );
-            })}
-
             <div>
               {addedVariants.map((color, index) => {
                 return (

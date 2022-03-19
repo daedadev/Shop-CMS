@@ -32,6 +32,8 @@ export default function InventoryPage() {
       });
   }
 
+  function addItem() {}
+
   function deleteItem() {}
 
   function exitConfirmModal() {
@@ -73,19 +75,18 @@ export default function InventoryPage() {
           title={"Delete Item"}
         />
       </div>
-
+      <EditModal
+        toggle={modalToggle}
+        item={modalItem}
+        setToggle={setModalToggle}
+      />
       <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl rounded-lg overflow-auto">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <EditModal
-            toggle={modalToggle}
-            item={modalItem}
-            setToggle={setModalToggle}
-          />
           <h1 className="flex text-5xl text-slate-800 text-left w-full">
             Inventory
           </h1>
 
-          <section className="w-full mt-10">
+          <section className="w-full h-full mt-10 justify-between">
             {inventory.map((item) => {
               return (
                 <InventoryItem
@@ -97,6 +98,11 @@ export default function InventoryPage() {
               );
             })}
           </section>
+          <div className="flex sticky bottom-0 w-full justify-end">
+            <button className="bg-blue-500 text-white rounded-lg pl-5 pr-5 hover:bg-blue-600">
+              Add Item
+            </button>
+          </div>
         </div>
       </section>
     </>

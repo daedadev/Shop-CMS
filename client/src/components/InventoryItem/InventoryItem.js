@@ -3,11 +3,11 @@ import React, { useState } from "react";
 export default function InventoryItem({ item, setModal, deleteModal }) {
   return (
     <article className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md">
-      <div className="flex flex-col items-center justify-center text-center text-black ml-2 w-full">
+      <div className="flex md:flex-row flex-col items-center justify-center text-center text-black ml-2 w-full">
         <h1 className="text-xl md:w-1/3 w-full">{item.name}</h1>
         <h1 className="text-xl md:w-1/3 full">${item.price} </h1>
         <h1 className="text-xl md:w-1/3 w-full">Total Stock: 10 </h1>
-        <div className="flex fleex-row w-full justify-evenly">
+        <div className="flex fleex-row md:w-1/3 w-full justify-evenly">
           <button
             className="bg-blue-500 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 hover:bg-blue-600"
             onClick={() => setModal(item)}
