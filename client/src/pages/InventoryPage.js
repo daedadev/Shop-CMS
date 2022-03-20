@@ -88,7 +88,7 @@ export default function InventoryPage() {
     return (
       <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full ml-5">
+          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
             Inventory
           </h1>
           <section className="w-full mt-10">
@@ -126,13 +126,13 @@ export default function InventoryPage() {
         item={blankItem}
         setToggle={setCreateModal}
       />
-      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
+      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-y-auto">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full ml-5">
+          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
             Inventory
           </h1>
-          <section className="w-full h-full mt-10 justify-between">
-            <div>
+          <section className="w-full h-full mt-10 justify-between mb-96">
+            <div className="flex flex-col w-full md:pb-0 pb-44">
               {inventory.map((item) => {
                 return (
                   <InventoryItem
@@ -149,7 +149,7 @@ export default function InventoryPage() {
           <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
             <button
               onClick={() => setCreateModal(true)}
-              className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-0 mt-5 mb-5 mr-3 hover:bg-blue-600"
+              className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-0 mt-5 mr-3 hover:bg-blue-600"
             >
               Add Item
             </button>
