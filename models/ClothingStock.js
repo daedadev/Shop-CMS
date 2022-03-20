@@ -14,22 +14,27 @@ ClothingStock.init(
     xs: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     s: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     m: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     l: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     xl: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     color_id: {
       type: DataTypes.INTEGER,

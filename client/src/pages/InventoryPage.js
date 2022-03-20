@@ -86,11 +86,11 @@ export default function InventoryPage() {
 
   if (loading) {
     return (
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl rounded-lg overflow-auto">
-        <div className="w-[95%] h-[95%]">
-          <div>
-            <h1 className="text-5xl text-slate-800">Inventory</h1>
-          </div>
+      <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
+        <div className="flex flex-col w-[95%] h-[95%] items-center">
+          <h1 className="flex text-5xl text-slate-800 text-left w-full ml-5">
+            Inventory
+          </h1>
           <section className="w-full mt-10">
             <InventoryLoading />
           </section>
@@ -126,29 +126,30 @@ export default function InventoryPage() {
         item={blankItem}
         setToggle={setCreateModal}
       />
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
+      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full">
+          <h1 className="flex text-5xl text-slate-800 text-left w-full ml-5">
             Inventory
           </h1>
-
           <section className="w-full h-full mt-10 justify-between">
-            {inventory.map((item) => {
-              return (
-                <InventoryItem
-                  key={item.name + item.id}
-                  item={item}
-                  setModal={modalHandler}
-                  deleteModal={setConfirmModal}
-                  deleteMe={setIdToDelete}
-                />
-              );
-            })}
+            <div>
+              {inventory.map((item) => {
+                return (
+                  <InventoryItem
+                    key={item.name + item.id}
+                    item={item}
+                    setModal={modalHandler}
+                    deleteModal={setConfirmModal}
+                    deleteMe={setIdToDelete}
+                  />
+                );
+              })}
+            </div>
           </section>
-          <div className="flex sticky bottom-0 w-full justify-end">
+          <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
             <button
               onClick={() => setCreateModal(true)}
-              className="bg-blue-500 text-white rounded-lg pl-5 pr-5 hover:bg-blue-600"
+              className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-0 mt-5 mb-5 mr-3 hover:bg-blue-600"
             >
               Add Item
             </button>

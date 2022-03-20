@@ -7,8 +7,8 @@ import InventoryPage from "./pages/InventoryPage";
 export default function App() {
   return (
     <Router>
-      <section className="flex  w-screen h-screen items-center justify-center bg-slate-300">
-        <section className="flex flex-row md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full bg-slate-300">
+      <section className="flex  w-screen h-screen items-center justify-center bg-slate-400">
+        <section className="flex flex-row md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full bg-slate-400">
           <SideBar />
           <Routes>
             <Route path="/" element={<MainPage />} />

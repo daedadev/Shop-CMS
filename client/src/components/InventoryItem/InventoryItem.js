@@ -29,19 +29,19 @@ export default function InventoryItem({
 
         <div className="flex flex-col md:flex-row md:w-1/3 w-1/3 justify-evenly">
           <button
-            className="bg-blue-500 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 md:mb-0 mb-2 hover:bg-blue-600"
+            className="flex justify-center bg-blue-500 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 md:mb-0 mb-2 hover:bg-blue-600"
             onClick={() => setModal(item)}
           >
             Edit
           </button>
           <button
-            className="bg-red-600 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 hover:bg-red-700"
+            className="flex justify-center bg-red-600 text-white rounded-tr-lg rounded-bl-lg pl-5 pr-5 hover:bg-red-700"
             onClick={() => {
               deleteModal(true);
               deleteMe(item.id);
             }}
           >
-            delete
+            Delete
           </button>
         </div>
       </div>
