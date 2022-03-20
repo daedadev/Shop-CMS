@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import CurrentVariant from "../VariantComponents/CurrentVariant";
 import AddVariant from "../VariantComponents/AddVariant";
-import ConfirmDeleteModal from "../popupModals/ConfirmDeleteModal";
+import ConfirmDeleteModal from "../popupModals/ConfirmModal";
 
 export default function EditModal({ setToggle, toggle, item }) {
   const [titleVar, setTitleVar] = useState([]);
@@ -184,15 +184,26 @@ export default function EditModal({ setToggle, toggle, item }) {
                 Add Variant
               </span>
             </button>
-            <button
-              className="flex bg-blue-500 text-white w-fit pl-5 pr-5 rounded-lg hover:bg-blue-600"
-              onClick={(e) => {
-                e.preventDefault();
-                createPayload();
-              }}
-            >
-              Close
-            </button>
+            <div className="flex flex-row">
+              <button
+                className="flex justify-center font-semibold bg-white border border-gray-400 text-black md:w-24 w-fit pl-5 pr-5 md:mr-5 rounded-lg hover:bg-gray-200"
+                onClick={(e) => {
+                  setToggle(false);
+                  e.preventDefault();
+                }}
+              >
+                Close
+              </button>
+              <button
+                className="flex bg-blue-500 text-white w-fit pl-5 pr-5 rounded-lg hover:bg-blue-600"
+                onClick={(e) => {
+                  e.preventDefault();
+                  createPayload();
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </section>
         </form>
       </section>

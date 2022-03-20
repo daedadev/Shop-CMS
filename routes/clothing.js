@@ -41,32 +41,42 @@ router.get("/", async (req, res) => {
 });
 
 // Create Comment /api/clothing/create
-router.post("/create", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const theClothing = req.body;
   try {
-    const newClothing = await ClothingItem.create({
+    await ClothingItem.create({
       name: theClothing.name,
       price: theClothing.price,
       description: theClothing.description,
+    }).then((clothing) => {
+      if (theClothing.color !== undefined || theClothing.color.length != 0) {
+        console.log("adding color");
+        try {
+          theClothing.color.forEach((element) => {
+            console.log(element);
+            Color.create({
+              color: element.color,
+              clothing_item_id: clothing.id,
+            }).then((newColor) => {
+              ClothingStock.create({
+                xs: element.xs,
+                s: element.s,
+                m: element.m,
+                l: element.l,
+                xl: element.xl,
+                color_id: newColor.id,
+                item_id: clothing.id,
+              });
+            });
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
     });
 
-    const newColor = await Color.create({
-      color: theClothing.color,
-      clothing_item_id: newClothing.id,
-    });
-
-    await ClothingStock.create({
-      xs: theClothing.xs,
-      s: theClothing.s,
-      m: theClothing.m,
-      l: theClothing.l,
-      xl: theClothing.xl,
-      color_id: newColor.id,
-      item_id: newClothing.id,
-    });
-
-    res.send(newClothing);
+    res.send("Good!");
   } catch (err) {
     res.status(400).json(err);
   }

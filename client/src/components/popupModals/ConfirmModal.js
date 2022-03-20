@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ConfirmDeleteModal({
+export default function ConfirmModal({
   modalToggle,
   onDelete,
   onCancel,
