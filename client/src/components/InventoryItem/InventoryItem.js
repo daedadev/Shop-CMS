@@ -25,6 +25,7 @@ export default function InventoryItem({
           <h1 className="text-xl md:w-1/3 w-full">
             Total Stock: {totalStock}{" "}
           </h1>
+          {/* <h3>{item.createdAt}</h3> */}
         </div>
 
         <div className="flex flex-col md:flex-row md:w-1/3 w-1/3 justify-evenly">
