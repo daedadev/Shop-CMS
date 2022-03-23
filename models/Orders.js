@@ -24,13 +24,25 @@ Order.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    description: {
+    shipping_type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     order_number: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
     createdAt: {
       type: DataTypes.DATE,

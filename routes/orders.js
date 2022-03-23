@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Comment, Post } = require("../models/");
+const { User, Order } = require("../models/");
 
 // Create new post api/post/create
 router.get("/", async (req, res) => {
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 // Create new post api/post/create
-router.post("/create", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const thePost = req.body;
   try {
@@ -29,7 +29,7 @@ router.post("/create", async (req, res) => {
 });
 
 // Update post route /api/post/put
-router.put("/put", async (req, res) => {
+router.put("/", async (req, res) => {
   console.log(req.body);
   const thePost = req.body;
   try {
@@ -51,7 +51,7 @@ router.put("/put", async (req, res) => {
 });
 
 // Delete Post /api/post/delete/id
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/", async (req, res) => {
   try {
     Post.destroy({
       where: {

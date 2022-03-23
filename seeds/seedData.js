@@ -116,4 +116,65 @@ const stockData = [
   },
 ];
 
-module.exports = { clothingData, colorData, stockData };
+const userData = [
+  {
+    name: "Jacky Chin",
+    email: "wabbaJack@jackmail.com",
+    password: "password1",
+  },
+  {
+    name: "John Dough",
+    email: "jd@doughmail.com",
+    password: "password2",
+  },
+  {
+    name: "Catherine Blimp",
+    email: "CathyB@Bimple.com",
+    password: "password3",
+  },
+];
+
+// Standard 7.99
+// Priority 15.20
+// Next Day 34.99
+
+const orderData = [
+  {
+    name: "Oversized Jacket/blue",
+    price: 265.2,
+    size: "l",
+    shipping_type: "priority",
+    Address: "8291 Riverbed Street, Jacksonville, Kentucky",
+    order_number: "1350",
+    user_id: 1,
+  },
+  {
+    name: "Oversized Jacket/blue",
+    price: 284.99,
+    size: "s",
+    shipping_type: "next-day",
+    Address: "3425 Arlington Street, Brokton, Oklahoma",
+    order_number: "1350",
+    user_id: 2,
+  },
+  {
+    name: "Undersized Hoodie",
+    price: 154.99,
+    size: "s",
+    shipping_type: "next-day",
+    Address: "9119 Bingleton Avenue, Ringo, Nevada",
+    order_number: "1350",
+    user_id: 2,
+  },
+  {
+    name: "Levi Pants",
+    price: 107.99,
+    size: "l",
+    shipping_type: "standard",
+    Address: "8291 Riverbed Street, Jacksonville, California",
+    order_number: "1350",
+    user_id: 3,
+  },
+];
+
+module.exports = { clothingData, colorData, stockData, userData, orderData };
