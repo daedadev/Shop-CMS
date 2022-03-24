@@ -41,22 +41,6 @@ export default function InventoryPage() {
     setModalItem(item);
   }
 
-  async function getInventory() {
-    setLoading(true);
-    await fetch("http://localhost:3001/api/clothing", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((items) => items.json())
-      .then((items) => {
-        setInventory(items);
-        console.log(items);
-        setLoading(false);
-      });
-  }
-
   function deleteItem() {
     setLoading(true);
     exitConfirmModal();
@@ -81,6 +65,20 @@ export default function InventoryPage() {
   }
 
   useEffect(() => {
+    async function getInventory() {
+      await fetch("http://localhost:3001/api/clothing", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((items) => items.json())
+        .then((items) => {
+          setInventory(items);
+          console.log(items);
+          setLoading(false);
+        });
+    }
     getInventory();
   }, []);
 
@@ -126,7 +124,7 @@ export default function InventoryPage() {
         item={blankItem}
         setToggle={setCreateModal}
       />
-      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-y-auto">
+      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
           <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
             Inventory

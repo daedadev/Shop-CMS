@@ -20,9 +20,11 @@ export default function InventoryItem({
     <article className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md">
       <div className="flex flex-row items-center justify-center md:text-center text-left text-black ml-2 w-full">
         <div className="flex flex-col md:flex-row w-full ">
-          <h1 className="text-xl md:w-1/3 w-full">{item.name}</h1>
+          <h1 data-testid="Title" className="text-xl md:w-1/3 w-full">
+            {item.name}
+          </h1>
           <h1 className="text-xl md:w-1/3 full">${item.price} </h1>
-          <h1 className="text-xl md:w-1/3 w-full">
+          <h1 data-testid="Total-Stock" className="text-xl md:w-1/3 w-full">
             Total Stock: {totalStock}{" "}
           </h1>
           {/* <h3>{item.createdAt}</h3> */}
