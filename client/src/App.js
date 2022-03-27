@@ -3,6 +3,7 @@ import React from "react";
 import SideBar from "./components/SideBar/SideBar";
 import MainPage from "./pages/MainPage";
 import InventoryPage from "./pages/InventoryPage";
+import SoldPage from "./pages/SoldPage";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/sold" element={<SoldPage />} />
           </Routes>
         </section>
       </section>

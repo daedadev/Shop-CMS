@@ -22,7 +22,7 @@ export default function SideBar() {
             <h1 className="text-slate-200 font-semibold">Inventory</h1>
           </a>
           <a
-            href="/"
+            href="/sold"
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Sold</h1>

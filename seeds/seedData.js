@@ -154,7 +154,7 @@ const orderData = [
     size: "s",
     shipping_type: "next-day",
     Address: "3425 Arlington Street, Brokton, Oklahoma",
-    order_number: "1350",
+    order_number: "2345",
     user_id: 2,
   },
   {
@@ -163,7 +163,7 @@ const orderData = [
     size: "s",
     shipping_type: "next-day",
     Address: "9119 Bingleton Avenue, Ringo, Nevada",
-    order_number: "1350",
+    order_number: "6543",
     user_id: 2,
   },
   {
@@ -172,7 +172,7 @@ const orderData = [
     size: "l",
     shipping_type: "standard",
     Address: "8291 Riverbed Street, Jacksonville, California",
-    order_number: "1350",
+    order_number: "1902",
     user_id: 3,
   },
 ];

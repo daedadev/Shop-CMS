@@ -1,5 +1,7 @@
 const ClothingItem = require("./ClothingItem");
 const ClothingStock = require("./ClothingStock");
+const Order = require("./Order");
+const User = require("./User");
 const Color = require("./Color");
 
 ClothingItem.hasMany(Color, {
@@ -29,4 +31,12 @@ ClothingStock.belongsTo(ClothingItem, {
   foreignKey: "item_id",
 });
 
-module.exports = { ClothingItem, ClothingStock, Color };
+Order.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+User.hasMany(Order, {
+  foreignKey: "user_id",
+});
+
+module.exports = { ClothingItem, ClothingStock, Color, Order, User };

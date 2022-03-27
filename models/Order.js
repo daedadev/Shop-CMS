@@ -21,7 +21,7 @@ Order.init(
       allowNull: false,
     },
     size: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     shipping_type: {

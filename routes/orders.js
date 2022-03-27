@@ -1,28 +1,35 @@
 const router = require("express").Router();
 const { User, Order } = require("../models/");
 
-// Create new post api/post/create
+// Get all posts api/post/
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.findAll({});
-    const postList = await posts.map((post) => post.get({ plain: true }));
-    res.send(postList);
+    const orders = await Order.findAll({
+      include: {
+        model: User,
+      },
+    });
+    const orderList = await orders.map((item) => item.get({ plain: true }));
+    res.send(orderList);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// Create new post api/post/create
+// Create new post api/post/
 router.post("/", async (req, res) => {
-  console.log(req.body);
-  const thePost = req.body;
+  const theOrder = req.body;
   try {
-    const newPost = Post.create({
-      title: thePost.title,
-      content: thePost.content,
-      user_id: req.session.user_id,
+    const newOrder = Order.create({
+      name: theOrder.name,
+      price: theOrder.price,
+      size: theOrder.size,
+      shipping_type: theOrder.shipping_type,
+      Address: theOrder.Address,
+      order_number: theOrder.order_number,
+      user_id: theOrder.user_id,
     });
-    res.send(newPost);
+    res.send(newOrder);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -30,21 +37,25 @@ router.post("/", async (req, res) => {
 
 // Update post route /api/post/put
 router.put("/", async (req, res) => {
-  console.log(req.body);
-  const thePost = req.body;
+  const theOrder = req.body;
   try {
-    Post.update(
+    Order.update(
       {
-        title: thePost.title,
-        content: thePost.content,
+        name: theOrder.name,
+        price: theOrder.price,
+        size: theOrder.size,
+        shipping_type: theOrder.shipping_type,
+        Address: theOrder.Address,
+        order_number: theOrder.order_number,
+        user_id: theOrder.user_id,
       },
       {
         where: {
-          id: thePost.post_id,
+          id: theOrder.order_id,
         },
       }
     );
-    res.send(thePost);
+    res.send(theOrder);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -53,12 +64,12 @@ router.put("/", async (req, res) => {
 // Delete Post /api/post/delete/id
 router.delete("/", async (req, res) => {
   try {
-    Post.destroy({
+    Order.destroy({
       where: {
         id: req.params.id,
       },
     });
-    res.send(thePost);
+    res.send("Successfully Deleted Order");
   } catch (err) {
     res.status(400).json(err);
   }
