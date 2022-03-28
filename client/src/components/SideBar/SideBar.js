@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function SideBar() {
   return (
@@ -8,37 +9,40 @@ export default function SideBar() {
           <h1 className="text-slate-200 font-bold">Dashboard</h1>
         </article>
         <article className="flex flex-col w-full h-fit items-center justify-between mt-20">
-          <a
-            href="/"
+          <Link
+            to={{ pathname: "/" }}
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Home Page</h1>
-          </a>
+          </Link>
 
-          <a
-            href="/inventory"
+          <Link
+            to={{ pathname: "/inventory" }}
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Inventory</h1>
-          </a>
-          <a
-            href="/sold"
+          </Link>
+
+          <Link
+            to={{ pathname: "/sold" }}
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Sold</h1>
-          </a>
-          <a
-            href="/user"
+          </Link>
+
+          <Link
+            to={{ pathname: "/user" }}
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Users</h1>
-          </a>
-          <a
-            href="/"
+          </Link>
+
+          <Link
+            to={{ pathname: "/stats" }}
             className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
           >
             <h1 className="text-slate-200 font-semibold">Statistics</h1>
-          </a>
+          </Link>
         </article>
       </section>
 

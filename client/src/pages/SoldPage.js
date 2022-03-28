@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 import OrderItem from "../components/OrderItem/OrderItem";
 import OrderModal from "../components/OrderModal/OrderModal";
 
@@ -32,45 +33,16 @@ export default function SoldPage() {
     getOrders();
   }, []);
 
-  if (loading) {
-    return (
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
-        <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
-            Items Sold
-          </h1>
-          <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md mt-10">
-            <div className="mb-5">
-              <article className="flex flex-row w-full justify-evenly">
-                <h1 className="flex w-full font-bold justify-center">
-                  Item Ordered
-                </h1>
-                <h1 className="flex w-full font-bold justify-center">Price</h1>
-                <h1 className="flex w-full font-bold justify-center">
-                  Shipping Type
-                </h1>
-                <h1 className="flex w-full font-bold justify-center">Date</h1>
-                <h1 className="flex w-full font-bold justify-center">
-                  Order Number
-                </h1>
-                <div className="w-full font-bold"></div>
-              </article>
-            </div>
-          </section>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <>
       {modal && <OrderModal setToggle={setModal} item={modalItem} />}
-
+      {loading && <LoadingIcon />}
       <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
+          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-3">
             Items Sold
           </h1>
+
           <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md mt-10">
             <div className="mb-5">
               <article className="flex flex-row w-full justify-evenly">
@@ -94,15 +66,16 @@ export default function SoldPage() {
                 </h1>
                 <div className="w-full font-bold"></div>
               </article>
-              {orders.map((item) => {
-                return (
-                  <OrderItem
-                    key={item.order_number}
-                    item={item}
-                    openModal={openModal}
-                  />
-                );
-              })}
+              {!loading &&
+                orders.map((item) => {
+                  return (
+                    <OrderItem
+                      key={item.order_number}
+                      item={item}
+                      openModal={openModal}
+                    />
+                  );
+                })}
             </div>
           </section>
         </div>
