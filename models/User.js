@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
+const moment = require("moment");
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -35,6 +36,18 @@ User.init(
         len: [8],
       },
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      get() {
+        return moment(this.getDataValue("createdAt")).format("MM/DD/YYYY");
+      },
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      get() {
+        return moment(this.getDataValue("updatedAt")).format("MM/DD/YYYY");
+      },
+    },
   },
   {
     hooks: {
@@ -44,7 +57,7 @@ User.init(
       },
     },
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: "user",

@@ -1,10 +1,33 @@
 const router = require("express").Router();
-const { User, Comment, Post } = require("../models/");
+const { User, Order } = require("../models/");
+const moment = require("moment");
 
 // Get all users api/user/
 router.get("/", async (req, res) => {
   try {
-    const users = await User.findAll({});
+    const users = await User.findAll({
+      include: {
+        model: Order,
+      },
+    });
+    const userList = await users.map((user) => user.get({ plain: true }));
+    res.send(userList);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Get all users api/user/
+router.get("/:id", async (req, res) => {
+  try {
+    const users = await User.findAll({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: Order,
+      },
+    });
     const userList = await users.map((user) => user.get({ plain: true }));
     res.send(userList);
   } catch (err) {

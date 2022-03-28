@@ -28,13 +28,17 @@ Order.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Address: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     order_number: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    order_status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     user_id: {
       type: DataTypes.INTEGER,

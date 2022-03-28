@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
     const orderList = await orders.map((item) => item.get({ plain: true }));
     res.send(orderList);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -27,6 +28,7 @@ router.post("/", async (req, res) => {
       shipping_type: theOrder.shipping_type,
       Address: theOrder.Address,
       order_number: theOrder.order_number,
+      order_status: theOrder.order_status,
       user_id: theOrder.user_id,
     });
     res.send(newOrder);
@@ -47,7 +49,28 @@ router.put("/", async (req, res) => {
         shipping_type: theOrder.shipping_type,
         Address: theOrder.Address,
         order_number: theOrder.order_number,
+        order_status: theOrder.order_status,
         user_id: theOrder.user_id,
+      },
+      {
+        where: {
+          id: theOrder.order_id,
+        },
+      }
+    );
+    res.send(theOrder);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Update post route /api/post/put
+router.put("/status", async (req, res) => {
+  const theOrder = req.body;
+  try {
+    Order.update(
+      {
+        order_status: theOrder.order_status,
       },
       {
         where: {

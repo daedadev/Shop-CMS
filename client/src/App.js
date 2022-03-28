@@ -4,6 +4,7 @@ import SideBar from "./components/SideBar/SideBar";
 import MainPage from "./pages/MainPage";
 import InventoryPage from "./pages/InventoryPage";
 import SoldPage from "./pages/SoldPage";
+import UserPage from "./pages/UserPage";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/sold" element={<SoldPage />} />
+            <Route path="/user" element={<UserPage />} />
           </Routes>
         </section>
       </section>
