@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 import InventoryPage from "./pages/InventoryPage";
 import SoldPage from "./pages/SoldPage";
 import UserPage from "./pages/UserPage";
+import StatsPage from "./pages/StatsPage";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/sold" element={<SoldPage />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/stats" element={<StatsPage />} />
           </Routes>
         </section>
       </section>

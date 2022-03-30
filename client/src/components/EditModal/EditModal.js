@@ -77,23 +77,10 @@ export default function EditModal({ setToggle, toggle, item }) {
     setVariantToDelete("");
   }
 
-  function createPayload() {
-    setLoading(true);
-    const payload = {
-      clothing_id: item.id,
-      name: nameRef.current.value,
-      price: priceRef.current.value,
-      description: descRef.current.value,
-      color: variants,
-      added_color: addedVariants,
-      deleted_color: deletedVariants,
-    };
-    fetch("http://localhost:3001/api/clothing/", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+  async function createPayload() {
+    try {
+      setLoading(true);
+      const payload = {
         clothing_id: item.id,
         name: nameRef.current.value,
         price: priceRef.current.value,
@@ -101,14 +88,30 @@ export default function EditModal({ setToggle, toggle, item }) {
         color: variants,
         added_color: addedVariants,
         deleted_color: deletedVariants,
-      }),
-    }).then((res) => {
-      if (res) {
-        console.log(payload);
-        window.location.reload();
-        setLoading(false);
-      }
-    });
+      };
+      fetch("http://localhost:3001/api/clothing/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clothing_id: item.id,
+          name: nameRef.current.value,
+          price: priceRef.current.value,
+          description: descRef.current.value,
+          color: variants,
+          added_color: addedVariants,
+          deleted_color: deletedVariants,
+        }),
+      }).then((res) => {
+        if (res) {
+          console.log(payload);
+          window.location.reload();
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   useEffect(() => {
@@ -119,6 +122,46 @@ export default function EditModal({ setToggle, toggle, item }) {
 
   if (!toggle) {
     return <></>;
+  }
+
+  if (loading) {
+    return (
+      <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full rounded-xl items-center justify-center z-20 ">
+        <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
+          <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
+            <section className="flex flex-col w-full h-full mb-20">
+              <h1 className="w-full text-black text-3xl text-center mt-10 font-semibold">
+                {titleVar}
+              </h1>
+              <div className="flex flex-col w-full h-full items-center justify-center">
+                <svg
+                  className="animate-spin h-20 w-20"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    className="opacity-40"
+                    cx={"12"}
+                    cy={"12"}
+                    r="10"
+                    stroke="#454545"
+                    stroke-width={"2"}
+                  ></circle>
+                  <path
+                    fill="#FFFFFF"
+                    className="opacity-75"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <h1 className="text-slate-800 mr-2 md:mr-0 font-semibold">
+                  Submitting Form
+                </h1>
+              </div>
+            </section>
+          </form>
+        </section>
+      </section>
+    );
   }
 
   return (
@@ -209,7 +252,7 @@ export default function EditModal({ setToggle, toggle, item }) {
             <div className="flex flex-row">
               <button
                 disabled={loading}
-                className="flex justify-center font-semibold bg-white border border-gray-400 text-black md:w-24 w-fit pl-5 pr-5 md:mr-5 rounded-lg hover:bg-gray-200"
+                className="flex justify-center font-semibold bg-white border border-gray-400 text-black md:w-24 w-fit pl-5 pr-5 md:mr-5 rounded-lg hover:bg-gray-200 disabled:bg-gray-200"
                 onClick={(e) => {
                   setToggle(false);
                   e.preventDefault();
@@ -246,7 +289,7 @@ export default function EditModal({ setToggle, toggle, item }) {
                     ></path>
                   </svg>
                 )}
-                {loading ? "" : "Submit"}
+                {loading ? "" : "Save"}
               </button>
             </div>
           </section>

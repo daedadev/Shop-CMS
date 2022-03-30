@@ -1,4 +1,58 @@
-export default function OrderModal({ setToggle, item }) {
+import React, { useEffect, useState } from "react";
+
+export default function OrderModal({ setToggle, id }) {
+  const [order, setOrder] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getUsers() {
+      await fetch(`http://localhost:3001/api/order/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((items) => items.json())
+        .then((items) => {
+          setOrder(items[0]);
+          console.log(items);
+          setLoading(false);
+        });
+    }
+    getUsers();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full rounded-xl items-center justify-center z-20 ">
+        <section className="flex flex-col absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
+          <svg
+            className="animate-spin h-20 w-20"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              className="opacity-40"
+              cx={"12"}
+              cy={"12"}
+              r="10"
+              stroke="#454545"
+              stroke-width={"2"}
+            ></circle>
+            <path
+              fill="#FFFFFF"
+              className="opacity-75"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          <h1 className=" text-slate-800 mr-2 md:mr-0 opacity-75">
+            Loading...
+          </h1>
+        </section>
+      </section>
+    );
+  }
+
   return (
     <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full rounded-xl items-center justify-center z-20 ">
       <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
@@ -8,39 +62,39 @@ export default function OrderModal({ setToggle, item }) {
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold">Order Number</h1>
-            <h1 className="text-center">#{item.order_number}</h1>
+            <h1 className="text-center">#{order.order_number}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Item(s) Ordered</h1>
-            <h1 className="text-center">{item.name}</h1>
+            <h1 className="text-center">{order.name}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Price</h1>
-            <h1 className="text-center">${item.price}</h1>
+            <h1 className="text-center">${order.price}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Size(s)</h1>
-            <h1 className="text-center">{item.size}</h1>
+            <h1 className="text-center">{order.size}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Address</h1>
-            <h1 className="text-center">{item.address}</h1>
+            <h1 className="text-center">{order.address}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Shipping Type</h1>
-            <h1 className="text-center">{item.shipping_type}</h1>
+            <h1 className="text-center">{order.shipping_type}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Customer Name</h1>
-            <h1 className="text-center">{item.user.name}</h1>
+            <h1 className="text-center">{order.user.name}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
-            <h1 className="font-semibold text-center">Customer Name</h1>
-            <h1 className="text-center">{item.user.email}</h1>
+            <h1 className="font-semibold text-center">Customer Email</h1>
+            <h1 className="text-center">{order.user.email}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Order Status</h1>
-            {item.order_status ? <h1>Fufilled</h1> : <h1>Unfulfilled</h1>}
+            {order.order_status ? <h1>Fufilled</h1> : <h1>Unfulfilled</h1>}
           </div>
           <div className="flex flex-row justify-end w-full p-5">
             <button

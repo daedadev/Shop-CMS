@@ -4,6 +4,7 @@ import EditModal from "../components/EditModal/EditModal";
 import InventoryItem from "../components/InventoryItem/InventoryItem";
 import InventoryLoading from "../components/loadingComponents/InventoryLoading";
 import ConfirmDeleteModal from "../components/popupModals/ConfirmModal";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState([]);
@@ -82,20 +83,6 @@ export default function InventoryPage() {
     getInventory();
   }, []);
 
-  if (loading) {
-    return (
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-auto">
-        <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
-            Inventory
-          </h1>
-          <section className="w-full mt-10">
-            <InventoryLoading />
-          </section>
-        </div>
-      </section>
-    );
-  }
   return (
     <>
       <div
@@ -126,23 +113,30 @@ export default function InventoryPage() {
       />
       <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3">
-            Inventory
-          </h1>
+          <div className="flex justify-start w-full h-16">
+            <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
+              Inventory
+            </h1>
+            {loading && <LoadingIcon />}
+          </div>
           <section className="w-full h-full mt-10 justify-between mb-96">
-            <div className="flex flex-col w-full md:pb-0 pb-44">
-              {inventory.map((item) => {
-                return (
-                  <InventoryItem
-                    key={item.name + item.id}
-                    item={item}
-                    setModal={modalHandler}
-                    deleteModal={setConfirmModal}
-                    deleteMe={setIdToDelete}
-                  />
-                );
-              })}
-            </div>
+            {loading ? (
+              <InventoryLoading />
+            ) : (
+              <div className="flex flex-col w-full md:pb-0 pb-44">
+                {inventory.map((item) => {
+                  return (
+                    <InventoryItem
+                      key={item.name + item.id}
+                      item={item}
+                      setModal={modalHandler}
+                      deleteModal={setConfirmModal}
+                      deleteMe={setIdToDelete}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </section>
           <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
             <button

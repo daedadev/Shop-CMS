@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Order } = require("../models/");
 
-// Get all posts api/post/
+// Get all posts api/order/
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.findAll({
@@ -17,7 +17,25 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Create new post api/post/
+router.get("/:id", async (req, res) => {
+  try {
+    const orders = await Order.findAll({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: User,
+      },
+    });
+    const theOrder = await orders.map((item) => item.get({ plain: true }));
+    res.send(theOrder);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+// Create new post api/order/
 router.post("/", async (req, res) => {
   const theOrder = req.body;
   try {
@@ -37,7 +55,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update post route /api/post/put
+// Update post route /api/order/
 router.put("/", async (req, res) => {
   const theOrder = req.body;
   try {
@@ -64,7 +82,7 @@ router.put("/", async (req, res) => {
   }
 });
 
-// Update post route /api/post/put
+// Update post route /api/order/status
 router.put("/status", async (req, res) => {
   const theOrder = req.body;
   try {
@@ -84,8 +102,8 @@ router.put("/status", async (req, res) => {
   }
 });
 
-// Delete Post /api/post/delete/id
-router.delete("/", async (req, res) => {
+// Delete Post /api/order/id
+router.delete("/:id", async (req, res) => {
   try {
     Order.destroy({
       where: {

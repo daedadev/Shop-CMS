@@ -6,6 +6,7 @@ import OrderModal from "../components/OrderModal/OrderModal";
 export default function SoldPage() {
   const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
+  const [fulfilledLoading, setFulfilledLoading] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [modalItem, setModalItem] = useState();
@@ -35,13 +36,16 @@ export default function SoldPage() {
 
   return (
     <>
-      {modal && <OrderModal setToggle={setModal} item={modalItem} />}
+      {modal && <OrderModal setToggle={setModal} id={modalItem} />}
       {loading && <LoadingIcon />}
+      {fulfilledLoading && <LoadingIcon />}
       <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-3">
-            Items Sold
-          </h1>
+          <div className="flex justify-start w-full h-16">
+            <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
+              Items Sold
+            </h1>
+          </div>
 
           <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md mt-10">
             <div className="mb-5">
@@ -73,6 +77,7 @@ export default function SoldPage() {
                       key={item.order_number}
                       item={item}
                       openModal={openModal}
+                      setLoading={setFulfilledLoading}
                     />
                   );
                 })}

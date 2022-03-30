@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function OrderItem({ item, openModal }) {
+export default function OrderItem({ item, openModal, setLoading }) {
   const [dateSmall, setDateSmall] = useState("");
 
   useEffect(() => {
@@ -12,19 +12,21 @@ export default function OrderItem({ item, openModal }) {
     smallDate();
   }, []);
 
-  function orderFufilled(event) {
+  async function orderFufilled(event) {
+    setLoading(true);
     console.log(event.target.checked);
     const payload = {
       order_id: item.id,
       order_status: event.target.checked,
     };
-    fetch("http://localhost:3001/api/order/status", {
+    await fetch("http://localhost:3001/api/order/status", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
+    setLoading(false);
   }
 
   return (
@@ -49,7 +51,7 @@ export default function OrderItem({ item, openModal }) {
       ></input>
       <div className="flex w-full justify-center">
         <button
-          onClick={() => openModal(item)}
+          onClick={() => openModal(item.id)}
           className="bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           <h1 className="md:flex hidden md:pl-3 md:pr-3 md:mb-0 md:mr-0">

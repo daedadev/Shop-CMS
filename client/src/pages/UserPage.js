@@ -11,8 +11,9 @@ export default function UserPage() {
   const [modalItem, setModalItem] = useState();
 
   function openModal(item) {
-    setModal(true);
+    console.log(item);
     setModalItem(item);
+    setModal(true);
   }
 
   useEffect(() => {
@@ -35,12 +36,15 @@ export default function UserPage() {
 
   return (
     <>
-      {modal && <OrderModal setToggle={setModal} item={modalItem} />}
+      {modal && <OrderModal setToggle={setModal} id={modalItem} />}
       <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
         <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
-            User Accounts
-          </h1>
+          <div className="flex justify-start w-full h-16">
+            <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
+              User Accounts
+            </h1>
+          </div>
+
           {loading && <LoadingIcon />}
 
           <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md mt-10">
