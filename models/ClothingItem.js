@@ -24,6 +24,15 @@ ClothingItem.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    category_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "none",
+      references: {
+        model: "category",
+        key: "name",
+      },
+    },
     createdAt: {
       type: DataTypes.DATE,
       get() {

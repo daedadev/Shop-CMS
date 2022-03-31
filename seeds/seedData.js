@@ -4,17 +4,20 @@ const clothingData = [
   {
     name: "Oversized Jacket",
     price: 250,
+    category_name: "Tops",
     description:
       "This jacket was made with love from the most loving places anyone could find.",
   },
   {
     name: "Undersized Hoodie",
     price: 120,
+    category_name: "Tops",
     description: "This hoodie is way too small.",
   },
   {
     name: "Levi Pants",
     price: 100,
+    category_name: "Bottoms",
     description: "Pants make the man and these pants definitely dont.",
   },
 ];
@@ -134,6 +137,39 @@ const userData = [
   },
 ];
 
+const shippingData = [
+  {
+    name: "standard",
+    price: "7.99",
+  },
+  {
+    name: "priority",
+    price: "7.99",
+  },
+  {
+    name: "next-day",
+    price: "7.99",
+  },
+];
+
+const categoryData = [
+  {
+    name: "Tops",
+  },
+  {
+    name: "Bottoms",
+  },
+  {
+    name: "Underwear",
+  },
+  {
+    name: "Dresses",
+  },
+  {
+    name: "Hats",
+  },
+];
+
 // Standard 7.99
 // Priority 15.20
 // Next Day 34.99
@@ -147,6 +183,7 @@ const orderData = [
     address: "8291 Riverbed Street, Jacksonville, Kentucky",
     order_number: "1350",
     order_status: true,
+    category_name: "Tops",
     user_id: 1,
   },
   {
@@ -157,6 +194,7 @@ const orderData = [
     address: "3425 Arlington Street, Brokton, Oklahoma",
     order_number: "2345",
     order_status: true,
+    category_name: "Tops",
     user_id: 2,
   },
   {
@@ -167,6 +205,7 @@ const orderData = [
     address: "9119 Bingleton Avenue, Ringo, Nevada",
     order_number: "6543",
     order_status: false,
+    category_name: "Tops",
     user_id: 2,
   },
   {
@@ -177,8 +216,17 @@ const orderData = [
     address: "8291 Riverbed Street, Jacksonville, California",
     order_number: "1902",
     order_status: false,
+    category_name: "Bottoms",
     user_id: 3,
   },
 ];
 
-module.exports = { clothingData, colorData, stockData, userData, orderData };
+module.exports = {
+  clothingData,
+  colorData,
+  stockData,
+  userData,
+  orderData,
+  shippingData,
+  categoryData,
+};

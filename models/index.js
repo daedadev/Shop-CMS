@@ -3,6 +3,8 @@ const ClothingStock = require("./ClothingStock");
 const Order = require("./Order");
 const User = require("./User");
 const Color = require("./Color");
+const Category = require("./Color");
+const Shipping = require("./Color");
 
 ClothingItem.hasMany(Color, {
   foreignKey: "clothing_item_id",
@@ -39,4 +41,20 @@ User.hasMany(Order, {
   foreignKey: "user_id",
 });
 
-module.exports = { ClothingItem, ClothingStock, Color, Order, User };
+Order.hasOne(Shipping, {
+  foreignKey: "shipping_name",
+});
+
+ClothingItem.belongsTo(Category, {
+  foreignKey: "category_name",
+});
+
+module.exports = {
+  ClothingItem,
+  ClothingStock,
+  Color,
+  Order,
+  User,
+  Category,
+  Shipping,
+};

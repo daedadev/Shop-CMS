@@ -40,9 +40,22 @@ Order.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    category_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "none",
+    },
+    shipping_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "user",
         key: "id",

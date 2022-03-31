@@ -1,8 +1,9 @@
 const sequelize = require("../config/connection");
 const { ClothingItem, ClothingStock, Color } = require("../models");
-const { Order, User } = require("../models");
+const { Order, User, Category, Shipping } = require("../models");
 const { clothingData, colorData, stockData } = require("./seedData");
-const { userData, orderData } = require("./seedData");
+const { userData, categoryData } = require("./seedData");
+const { orderData, shippingData } = require("./seedData");
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
@@ -12,8 +13,7 @@ const seedAll = async () => {
   await ClothingStock.bulkCreate(stockData);
   await User.bulkCreate(userData);
   await Order.bulkCreate(orderData);
-
-  process.exit(0);
+  await process.exit(0);
 };
 
 seedAll();
