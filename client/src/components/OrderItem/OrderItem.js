@@ -36,9 +36,9 @@ export default function OrderItem({ item, openModal, setLoading }) {
       </h1>
       <h1 className="flex justify-center w-full">${item.price}</h1>
       <h1 className="hidden md:flex justify-center w-full">
-        {item.shipping_type}
+        {item.shipping.name}
       </h1>
-      <h1 className="hidden md:flex justify-center w-full">{item.createdAt}</h1>
+      <h1 className="hidden md:flex justify-center w-full">{item.updatedAt}</h1>
       <h1 className="md:hidden flex justify-center w-full">{dateSmall}</h1>
       <h1 className="flex justify-center w-full overflow-hidden overflow-ellipsis">
         #{item.order_number}

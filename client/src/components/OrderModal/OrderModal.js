@@ -82,7 +82,7 @@ export default function OrderModal({ setToggle, id }) {
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Shipping Type</h1>
-            <h1 className="text-center">{order.shipping_type}</h1>
+            <h1 className="text-center">{order.shipping.name}</h1>
           </div>
           <div className="flex flex-col w-full justify-evenly items-center">
             <h1 className="font-semibold text-center">Customer Name</h1>

@@ -38,7 +38,7 @@ export default function UserItem({ user, openModal }) {
             >
               <h1 className="w-full text-center">#{order.order_number}</h1>
               <h1 className="w-full text-center">${order.price}</h1>
-              <h1 className="w-full text-center">{order.shipping_type}</h1>
+              <h1 className="w-full text-center">{order.shipping.name}</h1>
               <div className="flex w-full justify-center">
                 <button
                   onClick={() => openModal(order.id)}
