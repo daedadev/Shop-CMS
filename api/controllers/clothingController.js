@@ -1,27 +1,6 @@
-const router = require("express").Router();
 const { ClothingItem, ClothingStock, Color } = require("../models");
 
-const exampleBody = {
-  clothing_id: 1,
-  name: "Test Item",
-  price: 200,
-  description: "This is an update test item",
-  color: [
-    { color: "purple", id: 1 },
-    { color: "orange", id: 2 },
-    { color: "black", id: 3 },
-  ],
-  clothing_stock: [
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 1 },
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 2 },
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 3 },
-  ],
-  added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }],
-  deleted_color: [{ color_id: 1, stock_id: 2 }],
-};
-
-// Find all comments api/clothing/
-router.get("/", async (req, res) => {
+const getClothing = async (req, res) => {
   try {
     const clothing = await ClothingItem.findAll({
       include: {
@@ -38,52 +17,9 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-// Create Comment /api/clothing/create
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  const theClothing = req.body;
-  try {
-    await ClothingItem.create({
-      name: theClothing.name,
-      price: theClothing.price,
-      description: theClothing.description,
-    }).then((clothing) => {
-      if (theClothing.color !== undefined || theClothing.color.length != 0) {
-        console.log("adding color");
-        try {
-          theClothing.color.forEach((element) => {
-            console.log(element);
-            Color.create({
-              color: element.color,
-              clothing_item_id: clothing.id,
-            }).then((newColor) => {
-              ClothingStock.create({
-                xs: element.xs,
-                s: element.s,
-                m: element.m,
-                l: element.l,
-                xl: element.xl,
-                color_id: newColor.id,
-                item_id: clothing.id,
-              });
-            });
-          });
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    });
-
-    res.send("Good!");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-// Update Comment /api/clothing/
-router.put("/", async (req, res) => {
+const updateClothing = async (req, res) => {
   console.log(req.body);
   // Handling updating -------------
   const clothUpdate = req.body;
@@ -183,10 +119,50 @@ router.put("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-// Delete Comment /api/clothing/delete/id
-router.delete("/delete/:id", async (req, res) => {
+const addClothing = async (req, res) => {
+  console.log(req.body);
+  const theClothing = req.body;
+  try {
+    await ClothingItem.create({
+      name: theClothing.name,
+      price: theClothing.price,
+      description: theClothing.description,
+    }).then((clothing) => {
+      if (theClothing.color !== undefined || theClothing.color.length != 0) {
+        console.log("adding color");
+        try {
+          theClothing.color.forEach((element) => {
+            console.log(element);
+            Color.create({
+              color: element.color,
+              clothing_item_id: clothing.id,
+            }).then((newColor) => {
+              ClothingStock.create({
+                xs: element.xs,
+                s: element.s,
+                m: element.m,
+                l: element.l,
+                xl: element.xl,
+                color_id: newColor.id,
+                item_id: clothing.id,
+              });
+            });
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+
+    res.send("Good!");
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
+const deleteClothing = async (req, res) => {
   try {
     await ClothingItem.destroy({
       where: {
@@ -197,6 +173,6 @@ router.delete("/delete/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-module.exports = router;
+module.exports = { getClothing, updateClothing, addClothing, deleteClothing };

@@ -24,13 +24,12 @@ ClothingItem.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category_name: {
-      type: DataTypes.STRING,
+    category_id: {
+      type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: "none",
       references: {
         model: "category",
-        key: "name",
+        key: "id",
       },
     },
     createdAt: {

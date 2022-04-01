@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
-const routes = require("./routes/index");
-const sequelize = require("./config/connection");
+const routes = require("./api/routes/index");
+const sequelize = require("./api/config/connection");
 const session = require("express-session");
 const cors = require("cors");
 

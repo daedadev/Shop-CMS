@@ -1,13 +1,16 @@
-const router = require("express").Router();
-const { User, Order } = require("../models/");
+const { User, Order, Shipping } = require("../models/");
 
-// Get all posts api/order/
-router.get("/", async (req, res) => {
+const getOrder = async (req, res) => {
   try {
     const orders = await Order.findAll({
-      include: {
-        model: User,
-      },
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Shipping,
+        },
+      ],
     });
     const orderList = await orders.map((item) => item.get({ plain: true }));
     res.send(orderList);
@@ -15,17 +18,22 @@ router.get("/", async (req, res) => {
     console.log(err);
     res.status(400).json(err);
   }
-});
+};
 
-router.get("/:id", async (req, res) => {
+const getOrderId = async (req, res) => {
   try {
     const orders = await Order.findAll({
       where: {
         id: req.params.id,
       },
-      include: {
-        model: User,
-      },
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Shipping,
+        },
+      ],
     });
     const theOrder = await orders.map((item) => item.get({ plain: true }));
     res.send(theOrder);
@@ -33,10 +41,9 @@ router.get("/:id", async (req, res) => {
     console.log(err);
     res.status(400).json(err);
   }
-});
+};
 
-// Create new post api/order/
-router.post("/", async (req, res) => {
+const createOrder = async (req, res) => {
   const theOrder = req.body;
   try {
     const newOrder = Order.create({
@@ -53,10 +60,9 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-// Update post route /api/order/
-router.put("/", async (req, res) => {
+const updateOrder = async (req, res) => {
   const theOrder = req.body;
   try {
     Order.update(
@@ -80,10 +86,9 @@ router.put("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-// Update post route /api/order/status
-router.put("/status", async (req, res) => {
+const updateOrderStatus = async (req, res) => {
   const theOrder = req.body;
   try {
     Order.update(
@@ -100,10 +105,9 @@ router.put("/status", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-// Delete Post /api/order/id
-router.delete("/:id", async (req, res) => {
+const deleteOrder = async (req, res) => {
   try {
     Order.destroy({
       where: {
@@ -114,6 +118,13 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getOrder,
+  getOrderId,
+  updateOrder,
+  updateOrderStatus,
+  createOrder,
+  deleteOrder,
+};

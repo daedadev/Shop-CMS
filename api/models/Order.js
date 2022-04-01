@@ -24,10 +24,6 @@ Order.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    shipping_type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,11 +41,11 @@ Order.init(
       allowNull: true,
       defaultValue: "none",
     },
-    shipping_name: {
-      type: DataTypes.STRING,
+    shipping_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user",
+        model: "shipping",
         key: "id",
       },
     },
@@ -61,16 +57,14 @@ Order.init(
         key: "id",
       },
     },
+    updatedAt: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       get() {
         return moment(this.getDataValue("createdAt")).format("MM/DD/YYYY");
-      },
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      get() {
-        return moment(this.getDataValue("updatedAt")).format("MM/DD/YYYY");
       },
     },
   },
