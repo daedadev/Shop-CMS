@@ -88,7 +88,7 @@ export default function InventoryPage() {
       <div
         className={
           confirmModal
-            ? "absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg"
+            ? "absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg"
             : "hidden"
         }
       >
@@ -111,15 +111,15 @@ export default function InventoryPage() {
         item={blankItem}
         setToggle={setCreateModal}
       />
-      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
-        <div className="flex flex-col w-[95%] h-[95%] items-center">
+      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
+        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 pl-8">
+          Inventory
+        </h1>
+        <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
           <div className="flex justify-start w-full h-16">
-            <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
-              Inventory
-            </h1>
             {loading && <LoadingIcon />}
           </div>
-          <section className="w-full h-full mt-10 justify-between mb-96">
+          <section className="w-full h-full justify-between mb-96 ">
             {loading ? (
               <InventoryLoading />
             ) : (
@@ -138,14 +138,14 @@ export default function InventoryPage() {
               </div>
             )}
           </section>
-          <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
-            <button
-              onClick={() => setCreateModal(true)}
-              className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-0 mt-5 mr-3 hover:bg-blue-600"
-            >
-              Add Item
-            </button>
-          </div>
+        </div>
+        <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
+          <button
+            onClick={() => setCreateModal(true)}
+            className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-10 mt-5 mr-3 hover:bg-blue-600"
+          >
+            Add Item
+          </button>
         </div>
       </section>
     </>

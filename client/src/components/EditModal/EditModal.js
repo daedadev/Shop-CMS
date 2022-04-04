@@ -128,7 +128,7 @@ export default function EditModal({ setToggle, toggle, item }) {
     return (
       <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full rounded-xl items-center justify-center z-20 ">
         <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
-          <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
+          <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
             <section className="flex flex-col w-full h-full mb-20">
               <h1 className="w-full text-black text-3xl text-center mt-10 font-semibold">
                 {titleVar}
@@ -165,7 +165,7 @@ export default function EditModal({ setToggle, toggle, item }) {
   }
 
   return (
-    <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-[95%] xl:w-1280 md:w-11/12 w-full rounded-xl items-center justify-center z-20 ">
+    <section className="flex absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full rounded-l items-center justify-center z-20 ">
       <section className="flex absolute items-center justify-center bg-slate-100 h-5/6 md:h-3/4 w-10/12 md:w-2/3 lg:w-[700px] z-10 mt-2 md:mt-5 rounded-lg shadow-md">
         <ConfirmDeleteModal
           modalToggle={confirmModal}
@@ -175,7 +175,7 @@ export default function EditModal({ setToggle, toggle, item }) {
           message={"Are You Sure You Would Like To Delete This Variant?"}
         />
 
-        <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-400">
+        <form className="flex flex-col w-full h-full justify-between pl-10 pr-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
           <section className="flex flex-col w-full mb-20">
             <h1 className="w-full text-black text-3xl text-center mt-10 font-semibold">
               {titleVar}

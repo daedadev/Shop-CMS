@@ -8,7 +8,7 @@
     "dev": "concurrently \"nodemon 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "start": "nodemon seed.js",
-    "seed": "node seeds/index.js"
+    "seed": "node api/seeds/index.js"
   },
   "repository": {
     "type": "git",

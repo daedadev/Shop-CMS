@@ -17,7 +17,11 @@ Shipping.init(
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    personal_cost: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
   },

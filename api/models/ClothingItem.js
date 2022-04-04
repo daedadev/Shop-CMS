@@ -24,6 +24,11 @@ ClothingItem.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    price_per_unit: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "0",
+    },
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: true,

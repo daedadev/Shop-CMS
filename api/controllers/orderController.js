@@ -55,6 +55,7 @@ const createOrder = async (req, res) => {
       order_number: theOrder.order_number,
       order_status: theOrder.order_status,
       user_id: theOrder.user_id,
+      updatedAt: theOrder.updatedAt,
     });
     res.send(newOrder);
   } catch (err) {
@@ -75,6 +76,7 @@ const updateOrder = async (req, res) => {
         order_number: theOrder.order_number,
         order_status: theOrder.order_status,
         user_id: theOrder.user_id,
+        updatedAt: theOrder.updatedAt,
       },
       {
         where: {

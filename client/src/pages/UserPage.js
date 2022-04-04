@@ -37,17 +37,14 @@ export default function UserPage() {
   return (
     <>
       {modal && <OrderModal setToggle={setModal} id={modalItem} />}
-      <section className="flex  w-full h-full items-center justify-center bg-slate-200 rounded-tr-xl rounded-br-xl">
-        <div className="flex flex-col w-[95%] h-[95%] items-center">
-          <div className="flex justify-start w-full h-16">
-            <h1 className="flex text-5xl text-slate-800 text-left w-full pl-3 pt-5">
-              User Accounts
-            </h1>
-          </div>
-
+      <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
+        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 pl-8">
+          User Accounts
+        </h1>
+        <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
           {loading && <LoadingIcon />}
 
-          <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md mt-10">
+          <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md ">
             <div className="flex flex-col mb-5 w-full">
               <article className="flex flex-row w-full justify-evenly">
                 <h1 className="flex w-full font-bold justify-center">Name</h1>

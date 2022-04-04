@@ -68,28 +68,28 @@ export default function InventoryItem({
               />
               <section className="hidden flex-row w-[full] justify-around peer-checked:flex text-white bg-blue-400 rounded-br-lg rounded-bl-lg transition-all">
                 <div>
-                  <h1 className="text-lg">Size</h1>
-                  <h1 className="text-lg">Stock</h1>
+                  <h1 className="text-lg text-center">Size</h1>
+                  <h1 className="text-lg text-center">Stock</h1>
                 </div>
                 <div>
-                  <h1 className="text-lg">XS</h1>
-                  <h1>{color.clothing_stock.xs}</h1>
+                  <h1 className="text-lg text-center">XS</h1>
+                  <h1 className="text-center">{color.clothing_stock.xs}</h1>
                 </div>
                 <div>
-                  <h1 className="text-lg">S</h1>
-                  <h1>{color.clothing_stock.s}</h1>
+                  <h1 className="text-lg text-center">S</h1>
+                  <h1 className="text-center">{color.clothing_stock.s}</h1>
                 </div>
                 <div>
-                  <h1 className="text-lg">M</h1>
-                  <h1>{color.clothing_stock.m}</h1>
+                  <h1 className="text-lg text-center">M</h1>
+                  <h1 className="text-center">{color.clothing_stock.m}</h1>
                 </div>
                 <div>
-                  <h1 className="text-lg">L</h1>
-                  <h1>{color.clothing_stock.l}</h1>
+                  <h1 className="text-lg text-center">L</h1>
+                  <h1 className="text-center">{color.clothing_stock.l}</h1>
                 </div>
                 <div>
-                  <h1 className="text-lg">XL</h1>
-                  <h1>{color.clothing_stock.xl}</h1>
+                  <h1 className="text-lg text-center">XL</h1>
+                  <h1 className="text-center">{color.clothing_stock.xl}</h1>
                 </div>
               </section>
             </div>

@@ -28,6 +28,11 @@ export default function StatsPage() {
     setIncome(money);
   }
 
+  // fixed expenses
+  // Income
+  // Net Worth
+  // Spendings
+
   useEffect(() => {
     async function getUsers() {
       await fetch("http://localhost:3001/api/user", {
@@ -75,7 +80,6 @@ export default function StatsPage() {
             <h3>Total Income: {income}</h3>
             <h3>Total Users: {userAmount}</h3>
           </div>
-
           {loading && <LoadingIcon />}
         </div>
       </section>
