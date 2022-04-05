@@ -14,13 +14,15 @@ export default function MobileSideBar() {
           <div
             className={
               showNavigation
-                ? "w-full h-1 bg-slate-200 rotate-45 translate-y-1 duration-500"
+                ? "w-full h-1 bg-slate-200 rotate-45 translate-y-2 duration-500"
                 : "w-full h-1 bg-slate-200 duration-500 mb-2"
             }
           ></div>
           <div
             className={
-              showNavigation ? "hidden" : "w-full h-1 bg-slate-200 mb-2"
+              showNavigation
+                ? "w-full h-1 bg-slate-200 rotate-45 translate-y-1 duration-500"
+                : "w-full h-1 bg-slate-200 duration-500 mb-2"
             }
           ></div>
           <div
