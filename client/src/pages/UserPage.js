@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 import OrderModal from "../components/OrderModal/OrderModal";
 import UserItem from "../components/UserItem/UserItem";
 
@@ -34,6 +34,10 @@ export default function UserPage() {
     getUsers();
   }, []);
 
+  if (loading) {
+    return <LoadingDefault title={"Items Sold"} />;
+  }
+
   return (
     <>
       {modal && <OrderModal setToggle={setModal} id={modalItem} />}
@@ -42,8 +46,6 @@ export default function UserPage() {
           User Accounts
         </h1>
         <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
-          {loading && <LoadingIcon />}
-
           <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md ">
             <div className="flex flex-col mb-5 w-full">
               <article className="flex flex-row w-full justify-evenly">

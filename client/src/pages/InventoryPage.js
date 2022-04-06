@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import CreateModal from "../components/CreateModal/CreateModal";
 import EditModal from "../components/EditModal/EditModal";
 import InventoryItem from "../components/InventoryItem/InventoryItem";
-import InventoryLoading from "../components/loadingComponents/InventoryLoading";
+import InventoryLoading from "../components/LoadingDefault/LoadingDefault";
 import ConfirmDeleteModal from "../components/popupModals/ConfirmModal";
 import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState([]);
@@ -83,6 +84,10 @@ export default function InventoryPage() {
     getInventory();
   }, []);
 
+  if (loading) {
+    return <LoadingDefault title={"Inventory"} />;
+  }
+
   return (
     <>
       <div
@@ -116,27 +121,20 @@ export default function InventoryPage() {
           Inventory
         </h1>
         <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
-          <div className="flex justify-start w-full h-16">
-            {loading && <LoadingIcon />}
-          </div>
           <section className="w-full h-full justify-between mb-96 ">
-            {loading ? (
-              <InventoryLoading />
-            ) : (
-              <div className="flex flex-col w-full md:pb-0 pb-44">
-                {inventory.map((item) => {
-                  return (
-                    <InventoryItem
-                      key={item.name + item.id}
-                      item={item}
-                      setModal={modalHandler}
-                      deleteModal={setConfirmModal}
-                      deleteMe={setIdToDelete}
-                    />
-                  );
-                })}
-              </div>
-            )}
+            <div className="flex flex-col w-full md:pb-0 pb-44">
+              {inventory.map((item) => {
+                return (
+                  <InventoryItem
+                    key={item.name + item.id}
+                    item={item}
+                    setModal={modalHandler}
+                    deleteModal={setConfirmModal}
+                    deleteMe={setIdToDelete}
+                  />
+                );
+              })}
+            </div>
           </section>
         </div>
         <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">

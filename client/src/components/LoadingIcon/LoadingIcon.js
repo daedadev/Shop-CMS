@@ -2,9 +2,9 @@ import React from "react";
 
 export default function LoadingIcon() {
   return (
-    <div className="absolute flex flex-row-reverse md:flex-col top-4 right-4 items-center justify-center">
+    <div className="absolute flex flex-col md:flex-col md:top-4 md:right-4 md:w-fit md:h-fit w-full h-full items-center justify-center z-40">
       <svg
-        className="animate-spin h-10 w-10"
+        className="animate-spin md:h-10 md:w-10 h-24 w-24"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -14,7 +14,7 @@ export default function LoadingIcon() {
           cy={"12"}
           r="10"
           stroke="#454545"
-          stroke-width={"2"}
+          strokeWidth={"2"}
         ></circle>
         <path
           fill="#FFFFFF"

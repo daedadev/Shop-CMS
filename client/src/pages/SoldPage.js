@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 import OrderItem from "../components/OrderItem/OrderItem";
 import OrderModal from "../components/OrderModal/OrderModal";
 
@@ -34,11 +34,13 @@ export default function SoldPage() {
     getOrders();
   }, []);
 
+  if (loading) {
+    return <LoadingDefault title={"Items Sold"} />;
+  }
+
   return (
     <>
       {modal && <OrderModal setToggle={setModal} id={modalItem} />}
-      {loading && <LoadingIcon />}
-      {fulfilledLoading && <LoadingIcon />}
       <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
         <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 pl-8">
           Items Sold
