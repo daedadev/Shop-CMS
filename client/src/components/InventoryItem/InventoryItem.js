@@ -9,11 +9,15 @@ export default function InventoryItem({
   const [totalStock, setTotalStock] = useState(0);
 
   useEffect(() => {
-    item.colors.forEach((element) => {
-      const stock = element.clothing_stock;
-      const currentStock = stock.xs + stock.s + stock.m + stock.l + stock.xl;
-      setTotalStock(totalStock + currentStock);
-    });
+    let currentStock = 0;
+    for (var i = 0; i < item.colors.length; i++) {
+      currentStock += item.colors[i].clothing_stock.xs;
+      currentStock += item.colors[i].clothing_stock.s;
+      currentStock += item.colors[i].clothing_stock.m;
+      currentStock += item.colors[i].clothing_stock.l;
+      currentStock += item.colors[i].clothing_stock.xl;
+    }
+    setTotalStock(currentStock);
   }, []);
 
   return (

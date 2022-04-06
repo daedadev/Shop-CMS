@@ -117,10 +117,10 @@ export default function InventoryPage() {
         setToggle={setCreateModal}
       />
       <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
-        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 pl-8">
+        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 md:pl-8 pl-4">
           Inventory
         </h1>
-        <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
+        <div className="flex flex-col md:w-[98%] w-full h-[95%] items-center overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300 md:pb-0 pb-[72px]">
           <section className="w-full h-full justify-between mb-96 ">
             <div className="flex flex-col w-full md:pb-0 pb-44">
               {inventory.map((item) => {

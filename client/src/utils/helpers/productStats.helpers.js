@@ -26,21 +26,46 @@ export function settingIncomeByDate(
 
 export function getTotalInventoryAmount(items, setTotalInventoryAmount) {
   let inventory = 0;
+  console.log("item ", items);
 
   items.forEach((item) => {
     if (item.colors.length !== 0) {
       for (var i = 0; i < item.colors.length; i++) {
-        for (var n = 0; n < item.colors.length; n++) {
-          inventory += item.colors[n].clothing_stock.xs;
-          inventory += item.colors[n].clothing_stock.s;
-          inventory += item.colors[n].clothing_stock.m;
-          inventory += item.colors[n].clothing_stock.l;
-          inventory += item.colors[n].clothing_stock.xl;
-        }
+        inventory += item.colors[i].clothing_stock.xs;
+        inventory += item.colors[i].clothing_stock.s;
+        inventory += item.colors[i].clothing_stock.m;
+        inventory += item.colors[i].clothing_stock.l;
+        inventory += item.colors[i].clothing_stock.xl;
       }
     }
   });
   setTotalInventoryAmount(inventory);
 }
 
-export function getTotalInventoryCost(items) {}
+export function getTotalInventoryCost(items, setTotalInventoryCost) {
+  let inventory = [];
+  let itemCosts = [];
+  let finalPriceArray = [];
+  let finalPrice = 0;
+  items.forEach((item) => {
+    itemCosts.push(parseFloat(item.price_per_unit));
+    let itemInventory = 0;
+    if (item.colors.length !== 0) {
+      for (var i = 0; i < item.colors.length; i++) {
+        itemInventory += item.colors[i].clothing_stock.xs;
+        itemInventory += item.colors[i].clothing_stock.s;
+        itemInventory += item.colors[i].clothing_stock.m;
+        itemInventory += item.colors[i].clothing_stock.l;
+        itemInventory += item.colors[i].clothing_stock.xl;
+      }
+    }
+    inventory.push(itemInventory);
+  });
+  for (var i = 0; i < inventory.length; i++) {
+    finalPriceArray.push(inventory[i] * itemCosts[i]);
+  }
+  for (var n = 0; n < finalPriceArray.length; n++) {
+    finalPrice += finalPriceArray[n];
+  }
+  setTotalInventoryCost(finalPrice);
+}

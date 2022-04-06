@@ -68,6 +68,14 @@ const colorData = [
     color: "navy",
     clothing_item_id: 3,
   },
+  {
+    color: "purple",
+    clothing_item_id: 4,
+  },
+  {
+    color: "gray",
+    clothing_item_id: 4,
+  },
 ];
 
 const stockData = [
@@ -133,6 +141,24 @@ const stockData = [
     xl: 50,
     color_id: 7,
     item_id: 3,
+  },
+  {
+    xs: 11,
+    s: 0,
+    m: 0,
+    l: 10,
+    xl: 51,
+    color_id: 8,
+    item_id: 4,
+  },
+  {
+    xs: 1,
+    s: 10,
+    m: 0,
+    l: 30,
+    xl: 50,
+    color_id: 9,
+    item_id: 4,
   },
 ];
 

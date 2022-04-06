@@ -42,46 +42,44 @@ export default function SoldPage() {
     <>
       {modal && <OrderModal setToggle={setModal} id={modalItem} />}
       <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
-        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 pl-8">
+        <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 md:pl-8 pl-4">
           Items Sold
         </h1>
-        <div className="flex flex-col w-[98%] h-[95%] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
-          <section className="flex flex-col w-full mb-5 bg-slate-100 p-5 rounded-lg shadow-md">
-            <div className="mb-5">
-              <article className="flex flex-row w-full justify-evenly">
-                <h1 className="flex w-full font-bold justify-center text-center">
-                  Item Ordered
-                </h1>
-                <h1 className="flex w-full font-bold justify-center text-center">
-                  Price
-                </h1>
-                <h1 className="hidden md:flex w-full font-bold justify-center text-center">
-                  Shipping Type
-                </h1>
-                <h1 className="flex w-full font-bold justify-center text-center">
-                  Date
-                </h1>
-                <h1 className="flex w-full font-bold justify-center text-center">
-                  Order Number
-                </h1>
-                <h1 className="hidden md:flex w-full font-bold justify-center text-center">
-                  Fufilled
-                </h1>
-                <div className="w-full font-bold"></div>
-              </article>
-              {!loading &&
-                orders.map((item) => {
-                  return (
-                    <OrderItem
-                      key={item.order_number}
-                      item={item}
-                      openModal={openModal}
-                      setLoading={setFulfilledLoading}
-                    />
-                  );
-                })}
-            </div>
-          </section>
+        <div className="flex flex-col md:w-[98%] w-full h-[95%] mb-5 bg-slate-100 p-5 rounded-lg shadow-md overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300 md:pb-0 pb-[72px]">
+          <div className="flex flex-col mb-5 items-center justify-center">
+            <article className="flex flex-row w-full justify-evenly">
+              <h1 className="flex w-full font-bold justify-center text-center">
+                Item Ordered
+              </h1>
+              <h1 className="flex w-full font-bold justify-center text-center">
+                Price
+              </h1>
+              <h1 className="hidden md:flex w-full font-bold justify-center text-center">
+                Shipping Type
+              </h1>
+              <h1 className="flex w-full font-bold justify-center text-center">
+                Date
+              </h1>
+              <h1 className="flex w-full font-bold justify-center text-center">
+                Order Number
+              </h1>
+              <h1 className="hidden md:flex w-full font-bold justify-center text-center">
+                Fufilled
+              </h1>
+              <div className="w-full font-bold"></div>
+            </article>
+            {!loading &&
+              orders.map((item) => {
+                return (
+                  <OrderItem
+                    key={item.order_number}
+                    item={item}
+                    openModal={openModal}
+                    setLoading={setFulfilledLoading}
+                  />
+                );
+              })}
+          </div>
         </div>
       </section>
     </>

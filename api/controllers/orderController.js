@@ -15,7 +15,7 @@ const getOrder = async (req, res) => {
     const orderList = await orders.map((item) => item.get({ plain: true }));
     res.send(orderList);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -38,7 +38,7 @@ const getOrderId = async (req, res) => {
     const theOrder = await orders.map((item) => item.get({ plain: true }));
     res.send(theOrder);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -86,6 +86,7 @@ const updateOrder = async (req, res) => {
     );
     res.send(theOrder);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -105,6 +106,7 @@ const updateOrderStatus = async (req, res) => {
     );
     res.send(theOrder);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -118,6 +120,7 @@ const deleteOrder = async (req, res) => {
     });
     res.send("Successfully Deleted Order");
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };

@@ -15,6 +15,7 @@ const getUser = async (req, res) => {
     const userList = await users.map((user) => user.get({ plain: true }));
     res.send(userList);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -32,6 +33,7 @@ const getUserId = async (req, res) => {
     const userList = await users.map((user) => user.get({ plain: true }));
     res.send(userList);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -50,6 +52,7 @@ const createUser = async (req, res) => {
         console.error(err);
       });
   } catch (err) {
+    console.error(err);
     console.log(err);
   }
 };
@@ -61,6 +64,7 @@ const logoutUser = async (req, res) => {
       res.send("okay");
     });
   } else {
+    console.error(err);
     res.status(404).end();
   }
 };

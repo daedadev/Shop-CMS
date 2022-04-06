@@ -15,6 +15,7 @@ const getClothing = async (req, res) => {
     );
     res.send(clothingList);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -49,7 +50,7 @@ const updateClothing = async (req, res) => {
           },
         }
       ).catch((err) => {
-        console.log(err);
+        console.error(err);
       });
 
       ClothingStock.update(
@@ -66,7 +67,7 @@ const updateClothing = async (req, res) => {
           },
         }
       ).catch((err) => {
-        console.log(err);
+        console.error(err);
       });
     });
 
@@ -117,6 +118,7 @@ const updateClothing = async (req, res) => {
     }
     res.sendStatus(200);
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -158,6 +160,7 @@ const addClothing = async (req, res) => {
 
     res.send("Good!");
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
@@ -171,6 +174,7 @@ const deleteClothing = async (req, res) => {
     });
     res.send("Successfully deleted");
   } catch (err) {
+    console.error(err);
     res.status(400).json(err);
   }
 };
