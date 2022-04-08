@@ -31,10 +31,6 @@ if (process.env.NODE_ENV === "production") {
 
 app.use("/api", routes);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./index.html"));
-});
-
 app.use(express.static(path.join(__dirname, "../public")));
 
 sequelize.sync({ force: false }).then(() => {
