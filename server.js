@@ -25,16 +25,16 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api", routes);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/public/index.html");
+  app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
 }
 
-app.use("/api", routes);
-
-// app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
