@@ -18,7 +18,7 @@ export default function UserPage() {
 
   useEffect(() => {
     async function getUsers() {
-      await fetch("http://localhost:3001/api/user", {
+      await fetch("/api/user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

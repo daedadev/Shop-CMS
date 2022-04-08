@@ -6,7 +6,7 @@ export default function OrderModal({ setToggle, id }) {
 
   useEffect(() => {
     async function getUsers() {
-      await fetch(`http://localhost:3001/api/order/${id}`, {
+      await fetch(`/api/order/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -72,7 +72,7 @@ export default function CreateModal({ setToggle, toggle, item }) {
       color: addedVariants,
     };
 
-    fetch("http://localhost:3001/api/clothing/", {
+    fetch("/api/clothing/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

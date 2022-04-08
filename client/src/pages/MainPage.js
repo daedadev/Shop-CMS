@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 export default function MainPage() {
   async function getInventory() {
-    await fetch("http://localhost:3001/api/clothing", {
+    await fetch("/api/clothing", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

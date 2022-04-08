@@ -24,7 +24,7 @@ export default function OrderItem({ item, openModal, index }) {
       order_id: item.id,
       order_status: event.target.checked,
     };
-    await fetch("http://localhost:3001/api/order/status", {
+    await fetch("/api/order/status", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

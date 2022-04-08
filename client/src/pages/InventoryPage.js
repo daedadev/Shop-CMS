@@ -44,7 +44,7 @@ export default function InventoryPage() {
   function deleteItem() {
     setLoading(true);
     exitConfirmModal();
-    fetch(`http://localhost:3001/api/clothing/delete/${idToDelete}`, {
+    fetch(`/api/clothing/delete/${idToDelete}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function InventoryPage() {
 
   useEffect(() => {
     async function getInventory() {
-      await fetch("http://localhost:3001/api/clothing", {
+      await fetch("/api/clothing", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

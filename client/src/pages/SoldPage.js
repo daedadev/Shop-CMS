@@ -17,7 +17,7 @@ export default function SoldPage() {
 
   useEffect(() => {
     async function getOrders() {
-      await fetch("http://localhost:3001/api/order", {
+      await fetch("/api/order", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

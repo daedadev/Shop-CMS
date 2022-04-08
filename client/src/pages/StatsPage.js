@@ -73,7 +73,7 @@ export default function StatsPage() {
 
   useEffect(() => {
     async function getUsers() {
-      await fetch("http://localhost:3001/api/user", {
+      await fetch("/api/user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function StatsPage() {
         });
     }
     async function getInventory() {
-      await fetch("http://localhost:3001/api/clothing", {
+      await fetch("/api/clothing", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export default function StatsPage() {
     }
 
     async function getCategories() {
-      await fetch("http://localhost:3001/api/category", {
+      await fetch("/api/category", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

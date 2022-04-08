@@ -90,7 +90,7 @@ export default function EditModal({ setToggle, toggle, item }) {
         added_color: addedVariants,
         deleted_color: deletedVariants,
       };
-      fetch("http://localhost:3001/api/clothing/", {
+      fetch("/api/clothing/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
