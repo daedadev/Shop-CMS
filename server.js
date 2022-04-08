@@ -31,11 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", routes);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./index.html"));
+});
 
-// app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
