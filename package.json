@@ -4,10 +4,14 @@
   "description": "Backend to my personal blog",
   "main": "server.js",
   "scripts": {
-    "test:watch": "jest --verbose --watchAll",
-    "dev": "concurrently \"nodemon 'client/*'\" \"npm run client\"",
+    "begin": "npm run build && node server.js",
+    "start": "node server.js",
+    "start:original": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "start": "nodemon seed.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
     "seed": "node api/seeds/index.js"
   },
   "repository": {
