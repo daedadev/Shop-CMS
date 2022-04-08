@@ -26,7 +26,6 @@ export function settingIncomeByDate(
 
 export function getTotalInventoryAmount(items, setTotalInventoryAmount) {
   let inventory = 0;
-  console.log("item ", items);
 
   items.forEach((item) => {
     if (item.colors.length !== 0) {

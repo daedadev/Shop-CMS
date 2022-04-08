@@ -47,7 +47,6 @@ export default function CreateModal({ setToggle, toggle, item }) {
     setConfirmModal(true);
     const toDelete = [variant, index, type];
     setVariantToDelete(toDelete);
-    console.log(toDelete);
   }
 
   function deleteStoredVariant() {
@@ -90,13 +89,10 @@ export default function CreateModal({ setToggle, toggle, item }) {
           setToggle(false);
           window.location.reload();
         }
-        console.log(payload);
       })
       .catch((err) => {
         console.error(err);
       });
-
-    console.log(loading);
   }
 
   useEffect(() => {

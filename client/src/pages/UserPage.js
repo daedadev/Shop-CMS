@@ -11,7 +11,6 @@ export default function UserPage() {
   const [modalItem, setModalItem] = useState();
 
   function openModal(item) {
-    console.log(item);
     setModalItem(item);
     setModal(true);
   }
@@ -27,7 +26,6 @@ export default function UserPage() {
         .then((items) => items.json())
         .then((items) => {
           setUsers(items);
-          console.log(items);
           setLoading(false);
         });
     }

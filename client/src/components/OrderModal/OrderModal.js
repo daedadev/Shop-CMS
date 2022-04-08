@@ -15,7 +15,6 @@ export default function OrderModal({ setToggle, id }) {
         .then((items) => items.json())
         .then((items) => {
           setOrder(items[0]);
-          console.log(items);
           setLoading(false);
         });
     }

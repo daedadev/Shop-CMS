@@ -26,7 +26,6 @@ export default function SoldPage() {
         .then((items) => items.json())
         .then((items) => {
           setOrders(items);
-          console.log(items);
           setLoading(false);
         });
     }

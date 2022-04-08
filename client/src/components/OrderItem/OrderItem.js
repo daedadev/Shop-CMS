@@ -19,7 +19,6 @@ export default function OrderItem({ item, openModal, index }) {
   }, []);
 
   async function orderFufilled(event) {
-    console.log(event.target.checked);
     const payload = {
       order_id: item.id,
       order_status: event.target.checked,

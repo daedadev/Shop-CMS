@@ -53,7 +53,6 @@ export default function InventoryPage() {
       .then(() => {
         setLoading(false);
         window.location.reload();
-        console.log("Successfully Deleted Item");
       })
       .catch((err) => {
         console.error(err);
@@ -75,7 +74,6 @@ export default function InventoryPage() {
         .then((items) => items.json())
         .then((items) => {
           setInventory(items);
-          console.log(items);
           setLoading(false);
         });
     }

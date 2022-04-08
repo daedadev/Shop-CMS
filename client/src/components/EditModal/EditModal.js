@@ -55,7 +55,6 @@ export default function EditModal({ setToggle, toggle, item }) {
     setConfirmModal(true);
     const toDelete = [variant, index, type];
     setVariantToDelete(toDelete);
-    console.log(toDelete);
   }
 
   function deleteStoredVariant() {
@@ -106,7 +105,6 @@ export default function EditModal({ setToggle, toggle, item }) {
         }),
       }).then((res) => {
         if (res) {
-          console.log(payload);
           window.location.reload();
         }
       });

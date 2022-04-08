@@ -9,9 +9,7 @@ export default function MainPage() {
       },
     })
       .then((items) => items.json())
-      .then((items) => {
-        console.log(items);
-      });
+      .then((items) => {});
   }
 
   useEffect(() => {

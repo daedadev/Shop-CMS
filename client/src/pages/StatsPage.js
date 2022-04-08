@@ -81,7 +81,6 @@ export default function StatsPage() {
       })
         .then((items) => items.json())
         .then((items) => {
-          console.log(items);
           parseUsers(items);
         });
     }
@@ -94,7 +93,6 @@ export default function StatsPage() {
       })
         .then((items) => items.json())
         .then((items) => {
-          console.log(items);
           setUniqueInventoryAmount(items.length);
           getTotalInventoryAmount(items, setTotalInventoryAmount);
           getTotalInventoryCost(items, setTotalInventoryCost);
@@ -110,7 +108,6 @@ export default function StatsPage() {
       })
         .then((items) => items.json())
         .then((items) => {
-          console.log(items);
           getStockByCategory(items, setStockPerCategory);
         });
       setLoading(false);
