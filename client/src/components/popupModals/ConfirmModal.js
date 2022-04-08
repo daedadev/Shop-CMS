@@ -11,7 +11,7 @@ export default function ConfirmModal({
     <div
       className={
         modalToggle
-          ? "flex flex-col absolute items-center justify-center w-full h-full bg-slate-500 bg-opacity-50 z-20 rounded-lg"
+          ? "flex flex-col absolute items-center justify-center w-full h-full bg-slate-500 bg-opacity-50 z-20 md:rounded-xl"
           : "hidden"
       }
     >

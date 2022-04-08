@@ -6,7 +6,6 @@ import OrderModal from "../components/OrderModal/OrderModal";
 export default function SoldPage() {
   const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
-  const [fulfilledLoading, setFulfilledLoading] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [modalItem, setModalItem] = useState();
@@ -46,10 +45,13 @@ export default function SoldPage() {
           Items Sold
         </h1>
         <div className="flex flex-col md:w-[98%] w-full h-[95%] mb-5 bg-slate-100 p-5 rounded-lg shadow-md overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300 md:pb-0 pb-[72px]">
-          <div className="flex flex-col mb-5 items-center justify-center">
-            <article className="flex flex-row w-full justify-evenly">
-              <h1 className="flex w-full font-bold justify-center text-center">
+          <div className="flex flex-col items-center justify-center">
+            <article className="flex flex-row w-full justify-evenly pl-2">
+              <h1 className="md:flex hidden w-full font-bold justify-center text-center">
                 Item Ordered
+              </h1>
+              <h1 className="flex md:hidden w-full font-bold justify-center text-center">
+                Item
               </h1>
               <h1 className="flex w-full font-bold justify-center text-center">
                 Price
@@ -60,8 +62,11 @@ export default function SoldPage() {
               <h1 className="flex w-full font-bold justify-center text-center">
                 Date
               </h1>
-              <h1 className="flex w-full font-bold justify-center text-center">
+              <h1 className="md:flex hidden w-full font-bold justify-center text-center">
                 Order Number
+              </h1>
+              <h1 className="flex md:hidden w-full font-bold justify-center text-center">
+                Number
               </h1>
               <h1 className="hidden md:flex w-full font-bold justify-center text-center">
                 Fufilled
@@ -69,13 +74,13 @@ export default function SoldPage() {
               <div className="w-full font-bold"></div>
             </article>
             {!loading &&
-              orders.map((item) => {
+              orders.map((item, index) => {
                 return (
                   <OrderItem
                     key={item.order_number}
                     item={item}
                     openModal={openModal}
-                    setLoading={setFulfilledLoading}
+                    index={index}
                   />
                 );
               })}

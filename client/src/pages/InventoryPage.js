@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateModal from "../components/CreateModal/CreateModal";
 import EditModal from "../components/EditModal/EditModal";
 import InventoryItem from "../components/InventoryItem/InventoryItem";
-import InventoryLoading from "../components/LoadingDefault/LoadingDefault";
 import ConfirmDeleteModal from "../components/popupModals/ConfirmModal";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 
 export default function InventoryPage() {
@@ -93,7 +91,7 @@ export default function InventoryPage() {
       <div
         className={
           confirmModal
-            ? "absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg"
+            ? "absolute bg-slate-500 bg-opacity-30 md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full md:rounded-xl"
             : "hidden"
         }
       >
@@ -137,7 +135,7 @@ export default function InventoryPage() {
             </div>
           </section>
         </div>
-        <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 border-slate-400 pb-5">
+        <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 md:rounded-br-xl border-slate-400 pb-5">
           <button
             onClick={() => setCreateModal(true)}
             className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-10 mt-5 mr-3 hover:bg-blue-600"

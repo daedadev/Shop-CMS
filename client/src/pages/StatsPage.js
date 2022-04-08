@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
-import { Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut, PolarArea } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import {
   getTotalInventoryAmount,
@@ -187,7 +186,7 @@ export default function StatsPage() {
           </div>
           <div className="flex flex-col mt-5 md:w-[85%] w-full items-center justify-center">
             <h1>Income By Category</h1>
-            <Doughnut
+            <PolarArea
               data={{
                 labels: categoryNames,
                 datasets: [

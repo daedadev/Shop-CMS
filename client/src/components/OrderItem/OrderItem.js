@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-export default function OrderItem({ item, openModal, setLoading }) {
+export default function OrderItem({ item, openModal, index }) {
   const [dateSmall, setDateSmall] = useState("");
+  const [isEven, setIsEven] = useState(false);
 
   useEffect(() => {
     async function smallDate() {
@@ -9,11 +10,15 @@ export default function OrderItem({ item, openModal, setLoading }) {
       const newDate = date[0] + "/" + date[1];
       setDateSmall(newDate);
     }
+
+    if (index % 2 === 0) {
+      setIsEven(true);
+    }
+
     smallDate();
   }, []);
 
   async function orderFufilled(event) {
-    setLoading(true);
     console.log(event.target.checked);
     const payload = {
       order_id: item.id,
@@ -26,12 +31,17 @@ export default function OrderItem({ item, openModal, setLoading }) {
       },
       body: JSON.stringify(payload),
     });
-    setLoading(false);
   }
 
   return (
     <>
-      <article className="flex flex-row w-full justify-evenly mt-5">
+      <article
+        className={
+          isEven
+            ? "flex flex-row w-full justify-evenly pt-3 pb-3 pl-2 h-full "
+            : "flex flex-row w-full justify-evenly pt-3 pb-3 pl-2 h-full bg-slate-200"
+        }
+      >
         <h1 className="h-8 w-full whitespace-nowrap overflow-hidden overflow-ellipsis text-center">
           {item.name}
         </h1>
