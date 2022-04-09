@@ -1,6 +1,6 @@
 export function getIncomePerCategory(
   orderList,
-  setcategoryNames,
+  setIncomeCategoryNames,
   setIncomePerCategory,
   setCategoryColors
 ) {
@@ -20,7 +20,7 @@ export function getIncomePerCategory(
     }
   }
   console.log(categoryArray, priceArray);
-  setcategoryNames(categoryArray);
+  setIncomeCategoryNames(categoryArray);
   setIncomePerCategory(priceArray);
   generateCategoryColors(categoryArray, setCategoryColors);
 }
@@ -39,11 +39,18 @@ export function generateCategoryColors(categoryArray, setCategoryColors) {
   setCategoryColors(colorArray);
 }
 
-export function getStockByCategory(items, setStockPerCategory) {
+export function getStockByCategory(
+  items,
+  setStockPerCategory,
+  setStockCategoryNames
+) {
   let categoryStockArray = [];
+  let categoryNameArray = [];
+
   items.forEach((item) => {
     let inventory = 0;
-    if (item.clothing_items.length !== 0) {
+    if (item.clothing_items.length > 0) {
+      categoryNameArray.push(item.name);
       for (var j = 0; j < item.clothing_items.length; j++) {
         if (item.clothing_items[j].colors.length !== 0) {
           for (var i = 0; i < item.clothing_items[j].colors.length; i++) {
@@ -59,4 +66,5 @@ export function getStockByCategory(items, setStockPerCategory) {
     }
   });
   setStockPerCategory(categoryStockArray);
+  setStockCategoryNames(categoryNameArray);
 }

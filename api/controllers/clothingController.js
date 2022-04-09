@@ -30,6 +30,7 @@ const updateClothing = async (req, res) => {
         name: clothUpdate.name,
         price: clothUpdate.price,
         description: clothUpdate.description,
+        category_id: clothUpdate.category_id,
       },
       {
         where: {
@@ -131,6 +132,7 @@ const addClothing = async (req, res) => {
       name: theClothing.name,
       price: theClothing.price,
       description: theClothing.description,
+      category_id: theClothing.category_id,
     }).then((clothing) => {
       if (theClothing.color !== undefined || theClothing.color.length != 0) {
         console.log("adding color");

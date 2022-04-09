@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import AddVariant from "../VariantComponents/AddVariant";
 import ConfirmDeleteModal from "../popupModals/ConfirmModal";
 
-export default function CreateModal({ setToggle, toggle, item }) {
+export default function CreateModal({ setToggle, toggle, item, categories }) {
   const [titleVar, setTitleVar] = useState([]);
 
   const [addedVariants, setAddedVariants] = useState([]);
@@ -15,6 +15,7 @@ export default function CreateModal({ setToggle, toggle, item }) {
   const nameRef = useRef();
   const priceRef = useRef();
   const descRef = useRef();
+  const categoryRef = useRef();
 
   function updateTitle() {
     setTitleVar(nameRef.current.value);
@@ -69,6 +70,7 @@ export default function CreateModal({ setToggle, toggle, item }) {
       name: nameRef.current.value,
       price: priceRef.current.value,
       description: descRef.current.value,
+      category_id: parseInt(categoryRef.current.value),
       color: addedVariants,
     };
 
@@ -77,12 +79,7 @@ export default function CreateModal({ setToggle, toggle, item }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nameRef.current.value,
-        price: priceRef.current.value,
-        description: descRef.current.value,
-        color: addedVariants,
-      }),
+      body: JSON.stringify(payload),
     })
       .then((res) => {
         if (res) {
@@ -195,6 +192,22 @@ export default function CreateModal({ setToggle, toggle, item }) {
                 type="text"
                 className="border-2 border-slate-300 rounded-lg pl-2"
               ></textarea>
+            </article>
+            <article className="flex flex-col">
+              <label className="">Category</label>
+              <select
+                ref={categoryRef}
+                type="text"
+                className="border-2 border-slate-300 rounded-lg pl-2"
+              >
+                {categories.map((category) => {
+                  return (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  );
+                })}
+              </select>
             </article>
             <div>
               {addedVariants.map((color, index) => {

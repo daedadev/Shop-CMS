@@ -23,4 +23,17 @@ const getCategories = async (req, res) => {
   }
 };
 
-module.exports = { getCategories };
+const getCategoryList = async (req, res) => {
+  try {
+    const category = await Category.findAll();
+    const categoryList = await category.map((item) =>
+      item.get({ plain: true })
+    );
+    res.send(categoryList);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json(err);
+  }
+};
+
+module.exports = { getCategories, getCategoryList };
