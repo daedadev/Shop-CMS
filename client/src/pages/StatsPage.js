@@ -30,7 +30,8 @@ export default function StatsPage() {
   const [incomeDates, setIncomeDates] = useState([]);
 
   const [incomePerCategory, setIncomePerCategory] = useState([]);
-  const [categoryNames, setcategoryNames] = useState([]);
+  const [incomeCategoryNames, setIncomeCategoryNames] = useState([]);
+  const [stockCategoryNames, setStockCategoryNames] = useState([]);
   const [categoryColors, setCategoryColors] = useState([]);
 
   const [shippingIncome, setShippingIncome] = useState();
@@ -58,7 +59,7 @@ export default function StatsPage() {
     setTotalIncome(money);
     getIncomePerCategory(
       orderList,
-      setcategoryNames,
+      setIncomeCategoryNames,
       setIncomePerCategory,
       setCategoryColors
     );
@@ -108,7 +109,8 @@ export default function StatsPage() {
       })
         .then((items) => items.json())
         .then((items) => {
-          getStockByCategory(items, setStockPerCategory);
+          console.log(items);
+          getStockByCategory(items, setStockPerCategory, setStockCategoryNames);
         });
       setLoading(false);
     }
@@ -185,7 +187,7 @@ export default function StatsPage() {
             <h1>Income By Category</h1>
             <PolarArea
               data={{
-                labels: categoryNames,
+                labels: incomeCategoryNames,
                 datasets: [
                   {
                     label: "Income By Category",
@@ -201,7 +203,7 @@ export default function StatsPage() {
           <div className="flex flex-col mt-5 w-full items-center justify-center mb-10">
             <Bar
               data={{
-                labels: ["Total Stock", "Unique Stock", ...categoryNames],
+                labels: ["Total Stock", "Unique Stock", ...stockCategoryNames],
                 datasets: [
                   {
                     label: "Stock Numbers",

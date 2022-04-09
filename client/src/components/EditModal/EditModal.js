@@ -2,9 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import CurrentVariant from "../VariantComponents/CurrentVariant";
 import AddVariant from "../VariantComponents/AddVariant";
 import ConfirmDeleteModal from "../popupModals/ConfirmModal";
-import LoadingIcon from "../LoadingIcon/LoadingIcon";
 
-export default function EditModal({ setToggle, toggle, item }) {
+export default function EditModal({ setToggle, toggle, item, categories }) {
   const [titleVar, setTitleVar] = useState([]);
 
   const [variants, setVariants] = useState([]);
@@ -19,6 +18,7 @@ export default function EditModal({ setToggle, toggle, item }) {
   const nameRef = useRef();
   const priceRef = useRef();
   const descRef = useRef();
+  const categoryRef = useRef();
 
   function updateTitle() {
     setTitleVar(nameRef.current.value);
@@ -85,6 +85,7 @@ export default function EditModal({ setToggle, toggle, item }) {
         name: nameRef.current.value,
         price: priceRef.current.value,
         description: descRef.current.value,
+        category_id: parseInt(categoryRef.current.value),
         color: variants,
         added_color: addedVariants,
         deleted_color: deletedVariants,
@@ -94,15 +95,7 @@ export default function EditModal({ setToggle, toggle, item }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          clothing_id: item.id,
-          name: nameRef.current.value,
-          price: priceRef.current.value,
-          description: descRef.current.value,
-          color: variants,
-          added_color: addedVariants,
-          deleted_color: deletedVariants,
-        }),
+        body: JSON.stringify(payload),
       }).then((res) => {
         if (res) {
           window.location.reload();
@@ -208,6 +201,25 @@ export default function EditModal({ setToggle, toggle, item }) {
                 type="text"
                 className="border-2 border-slate-300 rounded-lg pl-2"
               ></textarea>
+            </article>
+            <article className="flex flex-col">
+              <label className="">Category</label>
+              <select
+                ref={categoryRef}
+                type="text"
+                className="border-2 border-slate-300 rounded-lg pl-2"
+              >
+                <option value={item.category_id} hidden="hidden">
+                  {categories[item.category_id - 1].name}
+                </option>
+                {categories.map((category, index) => {
+                  return (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  );
+                })}
+              </select>
             </article>
             {item.colors.map((color, index) => {
               return (

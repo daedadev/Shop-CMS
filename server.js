@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", routes);
 
+<<<<<<< HEAD
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("/*", function (req, res) {
@@ -36,6 +37,8 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(express.static(path.join(__dirname, "../public")));
 
+=======
+>>>>>>> 94f4c9db72caa0ae92bdee0cfe1b2d0518e1d8f1
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });

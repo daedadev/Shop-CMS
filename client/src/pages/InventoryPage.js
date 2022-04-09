@@ -7,6 +7,8 @@ import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [modalItem, setModalItem] = useState();
   const [modalToggle, setModalToggle] = useState(false);
@@ -74,9 +76,24 @@ export default function InventoryPage() {
         .then((items) => items.json())
         .then((items) => {
           setInventory(items);
+          console.log(items);
+        });
+    }
+    async function getCategories() {
+      await fetch("/api/category/list", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((items) => items.json())
+        .then((items) => {
+          setCategories(items);
+          console.log(items);
           setLoading(false);
         });
     }
+    getCategories();
     getInventory();
   }, []);
 
@@ -106,11 +123,13 @@ export default function InventoryPage() {
         toggle={modalToggle}
         item={modalItem}
         setToggle={setModalToggle}
+        categories={categories}
       />
       <CreateModal
         toggle={createModal}
         item={blankItem}
         setToggle={setCreateModal}
+        categories={categories}
       />
       <section className="flex flex-col w-full h-full items-center justify-center bg-slate-200 md:rounded-tr-xl md:rounded-br-xl md:rounded-tl-none md:rounded-bl-none rounded-lg">
         <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 md:pl-8 pl-4">
