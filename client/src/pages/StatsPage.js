@@ -109,7 +109,6 @@ export default function StatsPage() {
       })
         .then((items) => items.json())
         .then((items) => {
-          console.log(items);
           getStockByCategory(items, setStockPerCategory, setStockCategoryNames);
         });
       setLoading(false);
