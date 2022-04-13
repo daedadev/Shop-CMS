@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, FLOAT } = require("sequelize");
 const sequelize = require("../config/connection");
 const moment = require("moment");
 
@@ -14,10 +14,11 @@ Order.init(
     },
     name: {
       type: DataTypes.STRING,
+      length: FLOAT(5, 2),
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     size: {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { fetchHelperBody } from "../../utils/helpers/fetchFunction.helpers";
 
 export default function OrderItem({ item, openModal, index }) {
   const [dateSmall, setDateSmall] = useState("");
@@ -24,13 +25,7 @@ export default function OrderItem({ item, openModal, index }) {
       order_id: item.id,
       order_status: event.target.checked,
     };
-    await fetch("http://localhost:3001/api/order/status", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    fetchHelperBody("order/status", "PUT", payload);
   }
 
   return (
@@ -57,7 +52,7 @@ export default function OrderItem({ item, openModal, index }) {
           #{item.order_number}
         </h1>
         <input
-          className="hidden md:flex justify-center w-full"
+          className="hidden md:flex justify-center w-full mt-2"
           onChange={(e) => orderFufilled(e)}
           type="checkbox"
           defaultChecked={item.order_status}

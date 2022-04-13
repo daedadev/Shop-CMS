@@ -12,6 +12,7 @@ import {
   getStockByCategory,
 } from "../utils/helpers/categoryStats.helpers";
 import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
+import { fetchHelper } from "../utils/helpers/fetchFunction.helpers";
 
 Chart.register(...registerables);
 
@@ -73,52 +74,27 @@ export default function StatsPage() {
   // Spendings
 
   useEffect(() => {
-    async function getUsers() {
-      await fetch("http://localhost:3001/api/user", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          console.log(items);
-          parseUsers(items);
-        });
-    }
-    async function getInventory() {
-      await fetch("http://localhost:3001/api/clothing", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          console.log(items);
-          setUniqueInventoryAmount(items.length);
-          getTotalInventoryAmount(items, setTotalInventoryAmount);
-          getTotalInventoryCost(items, setTotalInventoryCost);
-        });
-    }
+    async function getItems() {
+      const userItems = await fetchHelper("user", "GET");
+      const clothingItems = await fetchHelper("clothing", "GET");
+      const categoryItems = await fetchHelper("category", "GET");
 
-    async function getCategories() {
-      await fetch("http://localhost:3001/api/category", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          console.log(items);
-          getStockByCategory(items, setStockPerCategory, setStockCategoryNames);
-        });
+      parseUsers(userItems);
+
+      getTotalInventoryAmount(clothingItems, setTotalInventoryAmount);
+      getTotalInventoryCost(clothingItems, setTotalInventoryCost);
+      setUniqueInventoryAmount(clothingItems.length);
+
+      getStockByCategory(
+        categoryItems,
+        setStockPerCategory,
+        setStockCategoryNames
+      );
+
       setLoading(false);
     }
-    getUsers();
-    getInventory();
-    getCategories();
+
+    getItems();
   }, []);
 
   if (loading) {
