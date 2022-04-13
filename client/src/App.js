@@ -11,7 +11,7 @@ import MobileSideBar from "./components/SideBar/MobileSideBar";
 export default function App() {
   return (
     <Router>
-      <section className="flex  w-screen h-screen items-center justify-center bg-slate-400">
+      <section className="flex w-screen h-screen items-center justify-center bg-slate-400">
         <section className="flex flex-row md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full bg-slate-400">
           <SideBar />
           <MobileSideBar />
