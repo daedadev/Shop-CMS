@@ -27,13 +27,13 @@ If you would like to view some of my journey in the development of this applicat
 
 ## Project Setup
 
-This application uses Javascript so you'll need node to run this application and download it's dependancies. If you don't have node installed you can get that [here](https://nodejs.org/en/).
+This application uses Javascript so you'll need node.js to run this application and download its dependencies. If you don't have node installed you can get that [here](https://nodejs.org/en/).
 
 Once you have my project on your own machine you'll want to run
 
 `npm install && cd client && npm install && cd ..`
 
-This set of commands will install the server side dependancies as well as the client side dependancies and ensure that you end up at the root folder by the end of it. This may take a bit.
+This set of commands will install the server side dependencies as well as the client side dependencies and ensure that you end up at the root folder by the end of it. This may take a bit.
 
 Next you'll need to setup the database. I am using MySQL workbench to handle my SQL database. All of the configuration for the database can be found in the `config` folder located in the `api` folder. The three parameters you'll need to setup either in the `.env` file or directly in `connection.js` are the **DB_NAME**, **DB_USER**, and **DB_PASSWORD**. You can set these up in the environment file.
 
@@ -162,9 +162,11 @@ Now that I've shown off the bones of the project, let me show you a bit of the b
 
 ![Database schema diagram](client/public/images/ShopfrontdbDiagram.png)
 
-This design had been a bit tricky throughout its implementation however it should be fairly self explanatory. `Category` has many `clothing_item` which contains `color` and by extent `clothing_stock`. Color in this case refers to any sort of variant you can have on your clothing item.
+This design had been a bit tricky throughout its implementation however it should be fairly self explanatory. `Category` has many `clothing_item` which contains `color` and by extension `clothing_stock`. Color in this case refers to any sort of variant you can have on your clothing item.
 
-`Order` belongs to `user` and contains `shipping`. Users create their `user` model before checkout and their order is assigned to that model. The shipping also gets atatched depending on which shipping is chosen.
+`Order` belongs to `user` and contains `shipping`. Users create their `user` model before checkout and their order is assigned to that model. The shipping also gets attached depending on which shipping is chosen.
+
+So now that we have discussed the way the backend works let me go over the frontend.
 
 <a name="Usage - Home Page"></a>
 
@@ -177,8 +179,6 @@ This is the home page of the content management system dashboard. This page show
 <a name="Usage - Inventory"></a>
 
 ## Usage - Inventory
-
-So now that we have discussed the way the backend works let me go over the frontend.
 
 **Inventory Page**
 ![Inventory Page Image](client/public/images/InventoryPage.PNG)
