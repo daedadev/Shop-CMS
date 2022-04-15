@@ -29,7 +29,9 @@ If you would like to view some of my journey in the development of this applicat
 
 This application uses Javascript so you'll need node to run this application and download it's dependancies. If you don't have node installed you can get that [here](https://nodejs.org/en/).
 
-Once you have my project on your own machine you'll want to run `npm install && cd client && npm install && cd ..`. This set of commands will install the server side dependancies as well as the client side dependancies and ensure that you end up at the root folder by the end of it. This may take a bit.
+Once you have my project on your own machine you'll want to run
+`npm install && cd client && npm install && cd ..`
+This set of commands will install the server side dependancies as well as the client side dependancies and ensure that you end up at the root folder by the end of it. This may take a bit.
 
 Next you'll need to setup the database. I am using MySQL workbench to handle my SQL database. All of the configuration for the database can be found in the `config` folder located in the `api` folder. The three parameters you'll need to setup either in the `.env` file or directly in `connection.js` are the **DB_NAME**, **DB_USER**, and **DB_PASSWORD**. You can set these up in the environment file.
 
