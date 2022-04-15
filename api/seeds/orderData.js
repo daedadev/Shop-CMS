@@ -3,7 +3,7 @@
 // Next Day 34.99
 const orderData = [
   {
-    name: "Oversized Jacket/blue",
+    name: "Oversized Jacket/blue(S)",
     price: 284.99,
     size: "small",
     address: "3425 Arlington Street, Brokton, Oklahoma",
@@ -15,7 +15,7 @@ const orderData = [
     user_id: 2,
   },
   {
-    name: "Undersized Hoodie",
+    name: "Undersized Hoodie/red(S)",
     price: 154.99,
     size: "small",
     address: "9119 Bingleton Avenue, Ringo, Nevada",
@@ -27,7 +27,7 @@ const orderData = [
     user_id: 2,
   },
   {
-    name: "Oversized Jacket/blue",
+    name: "Oversized Jacket/blue(L)",
     price: 265.2,
     size: "large",
     address: "8291 Riverbed Street, Jacksonville, Kentucky",
@@ -39,7 +39,7 @@ const orderData = [
     user_id: 1,
   },
   {
-    name: "Levi Pants",
+    name: "Levi Pants/navy(L)",
     price: 107.99,
     size: "large",
     address: "8291 Riverbed Street, Jacksonville, California",
@@ -51,7 +51,7 @@ const orderData = [
     user_id: 3,
   },
   {
-    name: "Undersized Hoodie",
+    name: "Undersized Hoodie/green(XL)",
     price: 127.99,
     size: "Extra Large",
     address: "2020 Blackhead Drive, Crimsville, Washington",
@@ -63,13 +63,13 @@ const orderData = [
     user_id: 4,
   },
   {
-    name: "Levi Pants/Longsleeve Cardigan",
-    price: 162.99,
-    size: "Extra Large/Large",
+    name: "Levi Pants/navy(XL)",
+    price: 107.99,
+    size: "Extra Large",
     address: "2020 Blackhead Drive, Crimsville, Washington",
     order_number: "1202",
     order_status: false,
-    category_name: "Multiple",
+    category_name: "Bottoms",
     updatedAt: "03/30/2022",
     shipping_id: 1,
     user_id: 4,
@@ -78,7 +78,7 @@ const orderData = [
   // Priority 15.20
   // Next Day 34.99
   {
-    name: "Undersized Hoodie",
+    name: "Undersized Hoodie/red(M)",
     price: 135.2,
     size: "Medium",
     address: "9021 Crumber Batch, Angelcity, Florida",
@@ -90,7 +90,7 @@ const orderData = [
     user_id: 5,
   },
   {
-    name: "Cargo Pants",
+    name: "Cargo Pants/brown(XL)",
     price: 117.99,
     size: "Extra Large",
     address: "3890 Frenchington, Charleston, Texas",
@@ -102,7 +102,7 @@ const orderData = [
     user_id: 6,
   },
   {
-    name: "Oversized Jacket",
+    name: "Oversized Jacket/green(L)",
     price: 284.99,
     size: "Large",
     address: "2020 Blackhead Drive, Crimsville, Washington",
