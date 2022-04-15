@@ -275,7 +275,7 @@ While my tests don't have the most coverage or test any of the currently setup r
 
 Tests can be found in the client folder `/client/src/utils/helpers/__test__`
 
-While in the root folder, running `cd client && npm run test` will run the tests I currently have setup.
+While in the root folder, running `cd client && npm run test` in the terminal will run the tests I currently have setup.
 
 <a name="Contributions"></a>
 
