@@ -1,22 +1,30 @@
 const sequelize = require("../config/connection");
 const { ClothingItem, ClothingStock, Color } = require("../models");
 const { Order, User, Category, Shipping } = require("../models");
-const { clothingData, colorData, stockData } = require("./seedData");
-const { userData, categoryData } = require("./seedData");
-const { orderData, shippingData } = require("./seedData");
+const { categoryData } = require("./categoryData");
+const { colorData } = require("./colorData");
+const { orderData } = require("./orderData");
+const { shippingData } = require("./shippingData");
+const { stockData } = require("./stockData");
+const { userData } = require("./userData");
+const { clothingData } = require("./clothingData");
 
-const seedAll = async () => {
-  await sequelize.sync({ force: true });
+async function seedAll() {
+  try {
+    await sequelize.sync({ force: true });
 
-  await Category.bulkCreate(categoryData);
-  await ClothingItem.bulkCreate(clothingData);
-  await Color.bulkCreate(colorData);
-  await ClothingStock.bulkCreate(stockData);
-  await User.bulkCreate(userData);
-  await Shipping.bulkCreate(shippingData);
-  await Order.bulkCreate(orderData);
+    await Category.bulkCreate(categoryData);
+    await ClothingItem.bulkCreate(clothingData);
+    await Color.bulkCreate(colorData);
+    await ClothingStock.bulkCreate(stockData);
+    await User.bulkCreate(userData);
+    await Shipping.bulkCreate(shippingData);
+    await Order.bulkCreate(orderData);
+  } catch (err) {
+    console.error(err);
+  }
 
-  await process.exit(0);
-};
+  process.exit(0);
+}
 
 seedAll();

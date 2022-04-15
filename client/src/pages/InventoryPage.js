@@ -4,6 +4,10 @@ import EditModal from "../components/EditModal/EditModal";
 import InventoryItem from "../components/InventoryItem/InventoryItem";
 import ConfirmDeleteModal from "../components/popupModals/ConfirmModal";
 import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
+import {
+  fetchHelper,
+  deleteHelper,
+} from "../utils/helpers/fetchFunction.helpers";
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState([]);
@@ -43,22 +47,14 @@ export default function InventoryPage() {
     setModalItem(item);
   }
 
-  function deleteItem() {
+  async function deleteItem() {
     setLoading(true);
     exitConfirmModal();
-    fetch(`/api/clothing/delete/${idToDelete}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(() => {
-        setLoading(false);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
+    await deleteHelper(`clothing/delete/${idToDelete}`, "DELETE");
+
+    setLoading(false);
+    window.location.reload();
   }
 
   function exitConfirmModal() {
@@ -66,35 +62,18 @@ export default function InventoryPage() {
   }
 
   useEffect(() => {
-    async function getInventory() {
-      await fetch("/api/clothing", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          setInventory(items);
-          console.log(items);
-        });
+    async function fetchItems() {
+      try {
+        const clothingItems = await fetchHelper("clothing", "GET");
+        const categoryList = await fetchHelper("category/list", "GET");
+        setInventory(clothingItems);
+        setCategories(categoryList);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
     }
-    async function getCategories() {
-      await fetch("/api/category/list", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          setCategories(items);
-          console.log(items);
-          setLoading(false);
-        });
-    }
-    getCategories();
-    getInventory();
+    fetchItems();
   }, []);
 
   if (loading) {

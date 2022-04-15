@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 import OrderModal from "../components/OrderModal/OrderModal";
 import UserItem from "../components/UserItem/UserItem";
+import { fetchHelper } from "../utils/helpers/fetchFunction.helpers";
 
 export default function UserPage() {
   const [users, setUsers] = useState();
@@ -17,17 +18,9 @@ export default function UserPage() {
 
   useEffect(() => {
     async function getUsers() {
-      await fetch("/api/user", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          setUsers(items);
-          setLoading(false);
-        });
+      const userItems = await fetchHelper("user", "GET");
+      setUsers(userItems);
+      setLoading(false);
     }
     getUsers();
   }, []);

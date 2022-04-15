@@ -2,12 +2,16 @@ import React from "react";
 
 export default function UserItem({ user, openModal }) {
   function checkOdd(index) {
-    return index & 1;
+    if (index % 2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return (
     <>
-      <article className="flex flex-row w-full justify-evenly bg-slate-300 rounded-md shadow-md mt-3">
+      <article className="flex flex-row w-full justify-evenly bg-slate-300 rounded-md shadow-sm mt-3">
         <h1 className="w-full font-bold whitespace-nowrap  overflow-hidden overflow-ellipsis md:text-center text-left ml-2">
           {user.name}
         </h1>
@@ -20,7 +24,7 @@ export default function UserItem({ user, openModal }) {
       </article>
 
       <article className="flex flex-col w-full justify-evenly ">
-        <div className="flex flex-row w-full  justify-evenly bg-slate-200 font-semibold border-b border-gray-400 pb-1">
+        <div className="flex flex-row w-full  justify-evenly font-semibold border-b border-gray-400 pb-1">
           <h1 className="w-full text-center">Order Number</h1>
           <h1 className="w-full text-center">Price</h1>
           <h1 className="w-full text-center">Shipping Type</h1>

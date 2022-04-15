@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingDefault from "../components/LoadingDefault/LoadingDefault";
 import OrderItem from "../components/OrderItem/OrderItem";
 import OrderModal from "../components/OrderModal/OrderModal";
+import { fetchHelper } from "../utils/helpers/fetchFunction.helpers";
 
 export default function SoldPage() {
   const [orders, setOrders] = useState();
@@ -17,17 +18,9 @@ export default function SoldPage() {
 
   useEffect(() => {
     async function getOrders() {
-      await fetch("/api/order", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          setOrders(items);
-          setLoading(false);
-        });
+      const items = await fetchHelper("order", "GET");
+      setOrders(items);
+      setLoading(false);
     }
     getOrders();
   }, []);
@@ -68,7 +61,7 @@ export default function SoldPage() {
                 Number
               </h1>
               <h1 className="hidden md:flex w-full font-bold justify-center text-center">
-                Fufilled
+                Completed
               </h1>
               <div className="w-full font-bold"></div>
             </article>

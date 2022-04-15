@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AddVariant from "../VariantComponents/AddVariant";
 import ConfirmDeleteModal from "../popupModals/ConfirmModal";
+import { fetchHelperBody } from "../../utils/helpers/fetchFunction.helpers";
 
 export default function CreateModal({ setToggle, toggle, item, categories }) {
   const [titleVar, setTitleVar] = useState([]);
@@ -63,7 +64,7 @@ export default function CreateModal({ setToggle, toggle, item, categories }) {
     setVariantToDelete("");
   }
 
-  function createPayload() {
+  async function createPayload() {
     setLoading(true);
     const payload = {
       name: nameRef.current.value,
@@ -72,24 +73,10 @@ export default function CreateModal({ setToggle, toggle, item, categories }) {
       category_id: parseInt(categoryRef.current.value),
       color: addedVariants,
     };
-
-    fetch("/api/clothing/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((res) => {
-        if (res) {
-          setLoading(false);
-          setToggle(false);
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    await fetchHelperBody("clothing", "POST", payload);
+    setLoading(false);
+    setToggle(false);
+    window.location.reload();
   }
 
   useEffect(() => {

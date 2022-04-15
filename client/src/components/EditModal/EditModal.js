@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import CurrentVariant from "../VariantComponents/CurrentVariant";
 import AddVariant from "../VariantComponents/AddVariant";
 import ConfirmDeleteModal from "../popupModals/ConfirmModal";
+import { fetchHelperBody } from "../../utils/helpers/fetchFunction.helpers";
 
 export default function EditModal({ setToggle, toggle, item, categories }) {
   const [titleVar, setTitleVar] = useState([]);
@@ -78,32 +79,20 @@ export default function EditModal({ setToggle, toggle, item, categories }) {
   }
 
   async function createPayload() {
-    try {
-      setLoading(true);
-      const payload = {
-        clothing_id: item.id,
-        name: nameRef.current.value,
-        price: priceRef.current.value,
-        description: descRef.current.value,
-        category_id: parseInt(categoryRef.current.value),
-        color: variants,
-        added_color: addedVariants,
-        deleted_color: deletedVariants,
-      };
-      fetch("/api/clothing/", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      }).then((res) => {
-        if (res) {
-          window.location.reload();
-        }
-      });
-    } catch (err) {
-      console.error(err);
-    }
+    setLoading(true);
+    const payload = {
+      clothing_id: item.id,
+      name: nameRef.current.value,
+      price: priceRef.current.value,
+      description: descRef.current.value,
+      category_id: parseInt(categoryRef.current.value),
+      color: variants,
+      added_color: addedVariants,
+      deleted_color: deletedVariants,
+    };
+    console.log(payload);
+    await fetchHelperBody("clothing", "PUT", payload);
+    window.location.reload();
   }
 
   useEffect(() => {

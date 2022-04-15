@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { fetchHelper } from "../../utils/helpers/fetchFunction.helpers";
 
 export default function OrderModal({ setToggle, id }) {
   const [order, setOrder] = useState();
@@ -6,17 +7,9 @@ export default function OrderModal({ setToggle, id }) {
 
   useEffect(() => {
     async function getUsers() {
-      await fetch(`/api/order/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((items) => items.json())
-        .then((items) => {
-          setOrder(items[0]);
-          setLoading(false);
-        });
+      const theUser = await fetchHelper(`order/${id}`, "GET");
+      setOrder(theUser[0]);
+      setLoading(false);
     }
     getUsers();
   }, [id]);
