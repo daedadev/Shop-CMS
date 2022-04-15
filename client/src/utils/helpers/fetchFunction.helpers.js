@@ -1,5 +1,5 @@
 export async function fetchHelper(route, method) {
-  const fetching = await fetch(`http://localhost:3001/api/${route}`, {
+  const fetching = await fetch(`/api/${route}`, {
     method: method,
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export async function fetchHelper(route, method) {
 }
 
 export async function deleteHelper(route, method) {
-  await fetch(`http://localhost:3001/api/${route}`, {
+  await fetch(`/api/${route}`, {
     method: method,
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export async function deleteHelper(route, method) {
 }
 
 export async function fetchHelperBody(route, method, body) {
-  fetch(`http://localhost:3001/api/${route}`, {
+  fetch(`/api/${route}`, {
     method: method,
     headers: {
       "Content-Type": "application/json",
