@@ -50,7 +50,7 @@ export function getStockByCategory(
   let categoryStockArray = [];
   let categoryNameArray = [];
 
-  // console.log(items);
+  console.log(items);
 
   items.forEach((item) => {
     let inventory = 0;
