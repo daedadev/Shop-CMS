@@ -93,7 +93,7 @@ export default function MainPage() {
               </div>
               <Link to={{ pathname: "/inventory" }}>
                 <h1 className="font-semibold underline text-blue-500 text-center">
-                  View Items
+                  View Inventory
                 </h1>
               </Link>
             </article>
