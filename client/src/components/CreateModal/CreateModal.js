@@ -49,7 +49,6 @@ export default function CreateModal({ setToggle, toggle, item, categories }) {
     setConfirmModal(true);
     const toDelete = [variant, index, type];
     setVariantToDelete(toDelete);
-    console.log(toDelete);
   }
 
   function deleteStoredVariant() {

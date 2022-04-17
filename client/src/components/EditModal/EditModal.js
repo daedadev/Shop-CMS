@@ -56,7 +56,6 @@ export default function EditModal({ setToggle, toggle, item, categories }) {
     setConfirmModal(true);
     const toDelete = [variant, index, type];
     setVariantToDelete(toDelete);
-    console.log(toDelete);
   }
 
   function deleteStoredVariant() {
@@ -91,7 +90,6 @@ export default function EditModal({ setToggle, toggle, item, categories }) {
       added_color: addedVariants,
       deleted_color: deletedVariants,
     };
-    console.log(payload);
     await fetchHelperBody("clothing", "PUT", payload);
     window.location.reload();
   }

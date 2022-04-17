@@ -12,7 +12,6 @@ export default function UserPage() {
   const [modalItem, setModalItem] = useState();
 
   function openModal(item) {
-    console.log(item);
     setModalItem(item);
     setModal(true);
   }

@@ -7,14 +7,11 @@ export function getIncomePerCategory(
   let categoryArray = [];
   let priceArray = [];
 
-  // console.log(orderList);
-
   for (var i = 0; i < orderList.length; i++) {
     if (categoryArray.includes(orderList[i].category_name)) {
       const categoryIndex = categoryArray.indexOf(orderList[i].category_name);
       priceArray[categoryIndex] += orderList[i].price;
     } else {
-      // console.log(false);
       categoryArray.push(orderList[i].category_name);
       priceArray.push(orderList[i].price);
     }
@@ -22,7 +19,6 @@ export function getIncomePerCategory(
   for (var j = 0; j < priceArray.length; j++) {
     priceArray[j] = parseFloat(priceArray[j].toFixed(2));
   }
-  // console.log(categoryArray, priceArray);
   setIncomeCategoryNames(categoryArray);
   setIncomePerCategory(priceArray);
   generateCategoryColors(categoryArray, setCategoryColors);

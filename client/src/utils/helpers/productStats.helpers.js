@@ -3,7 +3,6 @@ export function settingIncomeByDate(
   setIncomeDates,
   setIncomePricesByDate
 ) {
-  // console.log(income);
   let newArray = income;
   for (var n = 0; n < income.length; n++) {
     for (var i = 0; i < income.length; i++) {
@@ -27,7 +26,6 @@ export function settingIncomeByDate(
 
 export function getTotalInventoryAmount(items, setTotalInventoryAmount) {
   let inventory = 0;
-  // console.log("item ", items);
 
   items.forEach((item) => {
     if (item.colors.length !== 0) {
