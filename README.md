@@ -12,6 +12,7 @@ This application is a personal project I designed to help a store owner manage t
 - [Project Setup](#project-setup)
 - [Folder Structure](#folder-structure)
 - [Database Architecture](#database-architecture)
+- [API Payload](#api-payload)
 - [Usage - Home Page](#usage---home-page)
 - [Usage - Inventory](#usage---inventory)
 - [Usage - Sold](#usage---sold)
@@ -167,6 +168,82 @@ This design had been a bit tricky throughout its implementation however it shoul
 `Order` belongs to `user` and contains `shipping`. Users create their `user` model before checkout and their order is assigned to that model. The shipping also gets attached depending on which shipping is chosen.
 
 So now that we have discussed the way the backend works let me go over the frontend.
+
+<a name="API Payload"></a>
+
+## API Payload
+
+```
+const CreatePayload = {
+  name: "Test Item",
+  price: 200,
+  description: "This is an update test item",
+  color: [
+    { color: "purple"},
+    { color: "orange"},
+    { color: "black"},
+  ],
+  clothing_stock: [
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
+  ],
+};
+```
+
+Above is an example of the payload being sent to the backend upon creating an item. The `color` array is made up of colors/variants that are added and the `clothing_stock` array is made up of the corresponding stock values thus the lengths of `color` and `clothing_stock` arrays are the same. Each array item is its own item being added into the database with the parent object `clothing_item` is the `name`, `price`, and `description` key value pairs and is created first when sent to the API. From here a `clothing_id` will be sent to the `color` and `clothing_stock` objects upon their creation to point to the item they describe.
+
+```
+const EditPayload = {
+  clothing_id: 1,
+  name: "Test Item",
+  price: 200,
+  description: "This is an update test item",
+  color: [
+    { color: "purple", id: 1 },
+    { color: "orange", id: 2 },
+    { color: "black", id: 3 },
+  ],
+  clothing_stock: [
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 1 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 2 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12, id: 3 },
+  ],
+  added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }],
+  deleted_color: [{ color_id: 1, stock_id: 2 }],
+};
+```
+
+Above is an example of the payload that is sent upon making an edit request to the API. The main differences being the presence of the `clothing_id` and `id` tags that were not found in the `CreatePayload` object. These of course are needed to get reference to the objects being updated. Now the way that this payload works is a lot more intricate than the previous one. It essentially starts out as a bare bones object until an edit is made to the item.
+
+```
+const EditPayload = {
+  clothing_id: 1,
+  name: "Test Item",
+  price: 200,
+  description: "This is an update test item",
+  color: [],
+  clothing_stock: [],
+  added_color: [],
+  deleted_color: [],
+};
+```
+
+Without making any changes the payload will be seen as it is above. Making changes to colors that are already on the `clothing_item` will add the change into the `color` array and as such will act in an update. Same will happen with the corresponding `clothing_stock` array. If a color is added it will be added into the `added_color` array and as such will be treated as a create.
+
+```
+  added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }]
+```
+
+The `added_color` array handles the creation of both the `color` and `clothing_stock` with the color coming first and the stock values second, shown above.
+
+```
+deleted_color: [{ color_id: 1, stock_id: 2 }]
+```
+
+The `deleted_color` array handles deletion of colors. Once a color is deleted its id as well as stock id get stored as an object in the `deleted_color` array, shown above. This data is all that is needed to grab the rows and delete them.
+
+This system took a while to figure out and ultimately allows for decent editing, creation, and deletion of not only a `clothing_item` but simultaneously its `color` and by extension its `clothing_stock`. The arrays are handled in the API by **ForEach** and **For** loops allowing to check array lengths and if, for example, the `deleted_color` method contains no values then skip that function entirely.
 
 <a name="Usage - Home Page"></a>
 
