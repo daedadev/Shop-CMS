@@ -191,7 +191,11 @@ const CreatePayload = {
 };
 ```
 
+<<<<<<< HEAD
 Above is an example of the payload being sent to the backend upon creating an item. The `color` array is made up of colors/variants that are added and the `clothing_stock` array is made up of the corresponding stock values thus the lengths of `color` and `clothing_stock` arrays are the same. Each array item is its own item being added into the database with the parent object `clothing_item` is the `name`, `price`, and `description` key value pairs and is created first when sent to the API. From here a `clothing_id` will be sent to the `color` and `clothing_stock` objects upon their creation to point to the item they describe.
+=======
+Above is an example of the payload being sent to the backend upon creating an item. The `color` array is made up of colors/variants that are added while the `clothing_stock` array is made up of the corresponding stock values. Because of this the lengths of `color` and `clothing_stock` arrays are the same. Each array item is its own row being added into the database. The parent object `clothing_item` is made up of the `name`, `price`, and `description` key value pairs and is created first when sent to the API. From here a `clothing_id` will be sent to the `color` and `clothing_stock` objects upon their creation to point to the parent `clothing_item` they describe.
+>>>>>>> fce6ed3f3d2fb529940ed73a15348c5dbba8d16a
 
 ```
 const EditPayload = {
@@ -214,7 +218,11 @@ const EditPayload = {
 };
 ```
 
+<<<<<<< HEAD
 Above is an example of the payload that is sent upon making an edit request to the API. The main differences being the presence of the `clothing_id` and `id` tags that were not found in the `CreatePayload` object. These of course are needed to get reference to the objects being updated. Now the way that this payload works is a lot more intricate than the previous one. It essentially starts out as a bare bones object until an edit is made to the item.
+=======
+Above is an example of the payload that is sent upon making a `PUT` request to the API. The main differences being the presence of the `clothing_id` and `id` tags that were not found in the `CreatePayload` object. These of course are needed to get reference to the objects being updated. Now the way that this payload works is a lot more intricate than the previous one. It essentially starts out as a bare bones object until an edit is made to the item.
+>>>>>>> fce6ed3f3d2fb529940ed73a15348c5dbba8d16a
 
 ```
 const EditPayload = {
@@ -243,7 +251,11 @@ deleted_color: [{ color_id: 1, stock_id: 2 }]
 
 The `deleted_color` array handles deletion of colors. Once a color is deleted its id as well as stock id get stored as an object in the `deleted_color` array, shown above. This data is all that is needed to grab the rows and delete them.
 
+<<<<<<< HEAD
 This system took a while to figure out and ultimately allows for decent editing, creation, and deletion of not only a `clothing_item` but simultaneously its `color` and by extension its `clothing_stock`. The arrays are handled in the API by **ForEach** and **For** loops allowing to check array lengths and if, for example, the `deleted_color` method contains no values then skip that function entirely.
+=======
+This system took a while to figure out and ultimately allows for editing, creation, and deletion of not only a `clothing_item` but simultaneously its `color` and by extension its `clothing_stock` utilizing a single payload. The arrays are handled in the API by **ForEach** and **For** loops allowing to check array lengths and if, for example, the `deleted_color` method contains no values then skip that function entirely.
+>>>>>>> fce6ed3f3d2fb529940ed73a15348c5dbba8d16a
 
 <a name="Usage - Home Page"></a>
 
