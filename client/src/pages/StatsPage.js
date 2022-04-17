@@ -107,7 +107,7 @@ export default function StatsPage() {
         <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 md:pl-8 pl-4">
           Statistics
         </h1>
-        <div className="flex flex-col md:w-[98%] w-full h-[95%] items-center mb-5 bg-slate-100 p-5 rounded-lg shadow-md overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300 md:pb-0 pb-[72px]">
+        <div className="flex flex-col md:w-[98%] w-full h-[95%] items-center mb-5 bg-slate-100 p-5 rounded-lg shadow-md overflow-y-auto scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300 md:pb-0 pb-[72px]">
           <div className="flex flex-col md:mt-5 w-full items-center justify-center">
             <Bar
               data={{

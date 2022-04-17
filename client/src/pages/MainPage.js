@@ -6,10 +6,8 @@ import { getCompletedOrderCount } from "../utils/helpers/ordersMain.helpers";
 import {
   getTotalInventoryAmount,
   getTotalInventoryCost,
-  settingIncomeByDate,
 } from "../utils/helpers/productStats.helpers";
-import { Bar, Line } from "react-chartjs-2";
-import { Chart, registerables } from "chart.js";
+import { Bar } from "react-chartjs-2";
 import { getStockByCategory } from "../utils/helpers/categoryStats.helpers";
 
 export default function MainPage() {
@@ -80,7 +78,7 @@ export default function MainPage() {
         <h1 className="flex text-5xl text-slate-800 text-left w-full pt-5 mb-5 md:pl-8 pl-4">
           Welcome
         </h1>
-        <div className="flex flex-col  md:w-[98%] w-full h-[95%] mb-5 items-center overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
+        <div className="flex flex-col  md:w-[98%] w-full h-[95%] mb-5 items-center overflow-y-auto scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-300">
           <section className="flex md:flex-row flex-col md:w-full w-[94%] justify-center md:items-stretch items-center">
             <article className="flex flex-col w-full h-[180px] bg-slate-100 p-3 items-center justify-center rounded-xl shadow-md md:m-3 md:mb-0 mb-6">
               <div>
