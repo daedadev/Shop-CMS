@@ -8,7 +8,7 @@ export default function MobileSideBar() {
     <>
       <button
         onClick={() => setShowNavigtion(!showNavigation)}
-        className="md:hidden absolute flex bottom-0 z-50 bg-slate-800 text-white p-3 rounded-tr-xl w-16 h-16 items-center justify-center"
+        className="md:hidden absolute flex top-0 right-0 z-50 bg-slate-800 text-white p-3 rounded-bl-xl w-16 h-16 items-center justify-center"
       >
         <div className="flex flex-col w-full h-full items-center justify-center">
           <div
@@ -37,8 +37,8 @@ export default function MobileSideBar() {
       <section
         className={
           showNavigation
-            ? "absolute md:hidden flex-col bottom-0 bg-slate-800 w-16 h-2/3 z-40 mb-10 items-center justify-center rounded-tr-lg duration-500"
-            : "absolute md:hidden flex-col bottom-0 w-0 bg-slate-800 h-2/3  z-40 mb-10 items-center justify-center rounded-tr-lg duration-500"
+            ? "absolute md:hidden flex-col top-0 right-0 bg-slate-800 w-16 h-2/3 z-40 mb-10 items-center justify-center rounded-bl-lg duration-500"
+            : "absolute md:hidden flex-col top-0 right-0 w-0 bg-slate-800 h-2/3  z-40 mb-10 items-center justify-center rounded-bl-lg duration-500"
         }
       >
         <section
@@ -51,7 +51,7 @@ export default function MobileSideBar() {
           <Link
             onClick={() => setShowNavigtion(!showNavigation)}
             to={{ pathname: "/" }}
-            className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
+            className="flex flex-col items-center justify-center w-11/12 h-full mt-14"
           >
             <img
               className="w-10"
@@ -63,7 +63,7 @@ export default function MobileSideBar() {
           <Link
             onClick={() => setShowNavigtion(!showNavigation)}
             to={{ pathname: "/inventory" }}
-            className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
+            className="flex flex-col items-center justify-center w-11/12 h-full mt-5"
           >
             <img
               className="w-10"
@@ -75,7 +75,7 @@ export default function MobileSideBar() {
           <Link
             onClick={() => setShowNavigtion(!showNavigation)}
             to={{ pathname: "/sold" }}
-            className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
+            className="flex flex-col items-center justify-center w-11/12 h-full mt-5"
           >
             <img
               className="w-10"
@@ -87,7 +87,7 @@ export default function MobileSideBar() {
           <Link
             onClick={() => setShowNavigtion(!showNavigation)}
             to={{ pathname: "/user" }}
-            className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
+            className="flex flex-col items-center justify-center w-11/12 h-full mt-5"
           >
             <img
               className="w-10"
@@ -99,7 +99,7 @@ export default function MobileSideBar() {
           <Link
             onClick={() => setShowNavigtion(!showNavigation)}
             to={{ pathname: "/stats" }}
-            className="flex flex-col items-center justify-center w-11/12 h-full mb-10"
+            className="flex flex-col items-center justify-center w-11/12 h-full mt-5 mb-5"
           >
             <img
               className="w-10"
