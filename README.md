@@ -335,10 +335,11 @@ At the bottom of the page is where you will find the stock numbers of all the in
 
 ## Usage - Mobile
 
-While there aren't a lot of discrepancies between the desktop and mobile versions of the application there are a slight few.
+While there aren't a lot of discrepancies between the desktop and mobile versions of the application there is one big difference.
 
 ![Mobile View Inventory page](client/public/images/MobileView1.PNG)
-The main difference is going to be that the sidebar is now hidden and is controlled by a button in the lower left hand corner. Clicking this button will open up the sidebar and you can navigate through the pages from there.
+
+The sidebar is now hidden and is controlled by a button in the top right hand corner. Clicking this button will open up the sidebar and you can navigate through the pages from there.
 
 ![Mobile View Inventory page with opened sidebar](client/public/images/MobileView2.PNG)
 
