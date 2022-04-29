@@ -28,9 +28,11 @@ If you would like to view some of my journey in the development of this applicat
 
 ## Project Setup
 
-This application uses Javascript so you'll need node.js to run this application and download its dependencies. If you don't have node installed you can get that [here](https://nodejs.org/en/).
+This application uses Javascript so you'll need node.js to run this application and download its dependencies. If you don't have node installed you can get that [here](https://nodejs.org/en/). You'll also need `git` installed on your computer as well which you can download [here](https://git-scm.com/downloads).
 
-Once you have my project on your own machine you'll want to run
+You'll want to run `git clone <My project's github URL>` in your git bash wherever you want to add my project.
+
+Once you have my project on your own machine you'll want open it and in a new terminal run
 
 `npm install && cd client && npm install && cd ..`
 
