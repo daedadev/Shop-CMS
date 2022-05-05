@@ -38,7 +38,7 @@ Once you have my project on your own machine you'll want open it and in a new te
 
 This set of commands will install the server side dependencies as well as the client side dependencies and ensure that you end up at the root folder by the end of it. This may take a bit.
 
-Next you'll need to setup the database. I am using MySQL workbench to handle my SQL database. All of the configuration for the database can be found in the `config` folder located in the `api` folder. The three parameters you'll need to setup either in the `.env` file or directly in `connection.js` are the **DB_NAME**, **DB_USER**, and **DB_PASSWORD**. You can set these up in the environment file.
+Next you'll need to setup the database. I am using MySQL workbench to handle my SQL database. All of the configuration for the database can be found in the `config` folder located in the `api` folder. The two parameters you'll need to setup either in the `.env` file or directly in `connection.js` are the **DB_NAME**, **DB_USER**, and **DB_PASSWORD**. You can set these up in the environment file.
 
 An example being `DB_NAME=shopfrontDB` this would correspond with `process.env.DB_NAME` in the connection.js file.
 
@@ -175,27 +175,23 @@ So now that we have discussed the way the backend works let me go over the front
 
 ## API Payload
 
-```
+```js
 const CreatePayload = {
   name: "Test Item",
   price: 200,
   description: "This is an update test item",
-  color: [
-    { color: "purple"},
-    { color: "orange"},
-    { color: "black"},
-  ],
+  color: [{ color: "purple" }, { color: "orange" }, { color: "black" }],
   clothing_stock: [
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
-    { xs: 2, s: 40, m: 22, l: 13, xl: 12},
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12 },
+    { xs: 2, s: 40, m: 22, l: 13, xl: 12 },
   ],
 };
 ```
 
 Above is an example of the payload being sent to the backend upon creating an item. The `color` array is made up of colors/variants that are added while the `clothing_stock` array is made up of the corresponding stock values. Because of this the lengths of `color` and `clothing_stock` arrays are the same. Each array item is its own row being added into the database. The parent object `clothing_item` is made up of the `name`, `price`, and `description` key value pairs and is created first when sent to the API. From here a `clothing_id` will be sent to the `color` and `clothing_stock` objects upon their creation to point to the parent `clothing_item` they describe.
 
-```
+```js
 const EditPayload = {
   clothing_id: 1,
   name: "Test Item",
@@ -218,7 +214,7 @@ const EditPayload = {
 
 Above is an example of the payload that is sent upon making a `PUT` request to the API. The main differences being the presence of the `clothing_id` and `id` tags that were not found in the `CreatePayload` object. These of course are needed to get reference to the objects being updated. Now the way that this payload works is a lot more intricate than the previous one. It essentially starts out as a bare bones object until an edit is made to the item.
 
-```
+```js
 const EditPayload = {
   clothing_id: 1,
   name: "Test Item",
