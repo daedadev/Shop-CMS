@@ -229,14 +229,14 @@ const EditPayload = {
 
 Without making any changes the payload will be seen as it is above. Making changes to colors that are already on the `clothing_item` will add the change into the `color` array and as such will act in an update. Same will happen with the corresponding `clothing_stock` array. If a color is added it will be added into the `added_color` array and as such will be treated as a create.
 
-```
-  added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }]
+```js
+added_color: [{ color: "testing", xs: 2, s: 40, m: 22, l: 13, xl: 12 }];
 ```
 
 The `added_color` array handles the creation of both the `color` and `clothing_stock` with the color coming first and the stock values second, shown above.
 
-```
-deleted_color: [{ color_id: 1, stock_id: 2 }]
+```js
+deleted_color: [{ color_id: 1, stock_id: 2 }];
 ```
 
 The `deleted_color` array handles deletion of colors. Once a color is deleted its id as well as stock id get stored as an object in the `deleted_color` array, shown above. This data is all that is needed to grab the rows and delete them.
