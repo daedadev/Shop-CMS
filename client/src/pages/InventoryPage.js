@@ -131,7 +131,7 @@ export default function InventoryPage() {
             </div>
           </section>
         </div>
-        <div className="flex md:sticky absolute bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 md:rounded-br-xl border-slate-400 pb-5">
+        <div className="flex md:sticky sticky bottom-0 w-full md:h-fit justify-end bg-slate-200 border-t-2 md:rounded-br-xl border-slate-400 pb-5">
           <button
             onClick={() => setCreateModal(true)}
             className="bg-blue-500 text-white rounded-lg pl-5 pr-5 md:mb-0 md:mr-10 mt-5 mr-3 hover:bg-blue-600"
