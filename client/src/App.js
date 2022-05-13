@@ -14,6 +14,7 @@ export default function App() {
       <section className="flex w-screen h-screen items-center justify-center bg-slate-400">
         <section className="flex flex-row md:h-5/6 h-full xl:w-1280 md:w-11/12 w-full bg-slate-400">
           <SideBar />
+          <MobileSideBar />
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
@@ -23,7 +24,6 @@ export default function App() {
           </Routes>
         </section>
       </section>
-      <MobileSideBar />
     </Router>
   );
 }
