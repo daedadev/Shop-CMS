@@ -27,7 +27,7 @@ code {
     height: 100%;
     position: fixed;
     /* prevent overscroll bounce*/
-    background-color: lightgreen;
+    background-color: rgb(155, 155, 155);
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     /* iOS velocity scrolling */
